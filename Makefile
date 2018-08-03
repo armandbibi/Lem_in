@@ -18,54 +18,37 @@ IDIR	= includes
 ODIR	= objs
 LDIR	= libft
 LIB	= ft
-ITEMS 	= ft_atoi \
-	ft_puterr \
-	ft_create_elem \
-	ft_dosort \
-	ft_getargs \
-	ft_isnumber \
-	ft_issort \
-	ft_lstadd \
-	ft_lstdel \
-	ft_lstprint \
-	ft_lstpush \
-	ft_lstrot \
-	ft_lstrotrev \
-	ft_lstswap \
-	ft_readparams \
-	ft_readstdn \
-	get_next_line \
-	instructs \
-	instructs2 \
-	instructs3 \
-	ft_checkdb \
-	algo_fast_sort \
-	ft_bubble_sort \
-	quick_sort \
-	ft_get_nbr_elements \
-	ft_brut_force \
-	ft_optimisation \
-	opti_past_sort \
-	ft_operator_controls
+ITEMS 	= lem_in.c \
+	  ft_parse_args.c \
+	  ft_parse_is.c \
+	  ft_parse_item.c \
+	  ft_display_error.c \
+	  ft_info_maze.c \
+	  get_next_line.c \
+	  ft_atoi.c \
 
-OBJS	= $(addprefix $(ODIR)/, $(ITEMS:=.o))
+OBJS	= $(addprefix $(ODIR)/, $(ITEMS:.c=.o))
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(MAKE) -C $(LDIR)
-
+	@make -C $(LDIR)
+	@$(CC) $(CFLAGS) -o $(NAME) $^ -L $(LDIR) -I $(LDIR) -l $(LIB)
+	@echo "success !!!!!!"
+	
+	
 $(OBJS) : | $(ODIR)
+
 
 $(ODIR):
 	mkdir $(ODIR)
 
-$(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
-	@$(CC) $(CFLAGS) -o $@ -c $< -I$(IDIR) -I$(LDIR)
+$(ODIR)/%.o : $(SDIR)/%.c $(IDIR)
+	$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR)
 
 clean :
 	@$(MAKE) -C $(LDIR) clean
-	@rm -r $(ODIR)
+	@rm -rf $(ODIR)
 
 fclean : clean
 	@$(MAKE) -C $(LDIR) fclean
