@@ -20,12 +20,15 @@ LDIR	= libft
 LIB	= ft
 ITEMS 	= lem_in.c \
 	  ft_parse_args.c \
-	  ft_parse_is.c \
-	  ft_parse_item.c \
-	  ft_display_error.c \
-	  ft_info_maze.c \
+	  ft_parse_instructions.c \
+	  ft_catch_errors.c \
+	  ft_parse_nbr_ants.c \
+	  ft_parse_rooms.c \
+	  ft_is_command.c \
+	  ft_errors.c \
 	  get_next_line.c \
 	  ft_atoi.c \
+	  t_maze_operations.c \
 
 OBJS	= $(addprefix $(ODIR)/, $(ITEMS:.c=.o))
 
