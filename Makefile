@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/07/30 05:04:17 by abiestro         ###   ########.fr        #
+#    Updated: 2018/08/22 17:55:58 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,13 @@ ITEMS 	= lem_in.c \
 	  ft_catch_errors.c \
 	  ft_parse_nbr_ants.c \
 	  ft_parse_rooms.c \
+	  ft_parse_tubes.c \
 	  ft_is_command.c \
 	  ft_errors.c \
 	  get_next_line.c \
 	  ft_atoi.c \
 	  t_maze_operations.c \
+	  t_adj_lst_operations.c
 
 OBJS	= $(addprefix $(ODIR)/, $(ITEMS:.c=.o))
 

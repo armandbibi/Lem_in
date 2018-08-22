@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 17:01:54 by abiestro         ###   ########.fr       */
+/*   Created: 2018/04/03 13:50:06 by triou             #+#    #+#             */
+/*   Updated: 2018/06/20 19:28:18 by triou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include <stdlib.h>
 
-int	main(int ac, char **av)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	t_maze	maze;
-	new_maze(&maze);
-	ft_parse_file(ac, av, &maze);
+	unsigned char	*d;
+
+	d = (unsigned char *)dest;
+	while (n--)
+		*d++ = *(unsigned char *)src++;
+	return (dest);
 }

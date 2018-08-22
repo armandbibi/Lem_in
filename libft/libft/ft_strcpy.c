@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 17:01:54 by abiestro         ###   ########.fr       */
+/*   Created: 2018/04/03 13:52:30 by triou             #+#    #+#             */
+/*   Updated: 2018/06/20 19:28:55 by triou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include <stdlib.h>
 
-int	main(int ac, char **av)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	t_maze	maze;
-	new_maze(&maze);
-	ft_parse_file(ac, av, &maze);
+	size_t	len;
+
+	len = 0;
+	while ((dest[len] = src[len]))
+		len++;
+	return (dest);
 }

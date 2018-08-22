@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 17:01:54 by abiestro         ###   ########.fr       */
+/*   Created: 2018/04/03 13:53:30 by triou             #+#    #+#             */
+/*   Updated: 2018/06/20 18:58:08 by triou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_maze	maze;
-	new_maze(&maze);
-	ft_parse_file(ac, av, &maze);
+	char	*new;
+
+	new = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(*new));
+	if (!new)
+		return (NULL);
+	return (ft_strcat(ft_strcpy(new, s1), s2));
 }

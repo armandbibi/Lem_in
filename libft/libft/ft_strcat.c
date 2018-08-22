@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 17:01:54 by abiestro         ###   ########.fr       */
+/*   Created: 2018/04/03 13:52:02 by triou             #+#    #+#             */
+/*   Updated: 2018/06/20 18:46:38 by triou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
-
-int	main(int ac, char **av)
+char	*ft_strcat(char *dest, const char *src)
 {
-	t_maze	maze;
-	new_maze(&maze);
-	ft_parse_file(ac, av, &maze);
+	char	*d;
+
+	d = dest;
+	while (*d)
+		d++;
+	while (*src)
+		*d++ = *src++;
+	*d = '\0';
+	return (dest);
 }

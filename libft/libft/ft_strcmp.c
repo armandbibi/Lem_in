@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 17:01:54 by abiestro         ###   ########.fr       */
+/*   Created: 2018/04/03 13:52:25 by triou             #+#    #+#             */
+/*   Updated: 2018/06/20 15:43:57 by triou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
-
-int	main(int ac, char **av)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_maze	maze;
-	new_maze(&maze);
-	ft_parse_file(ac, av, &maze);
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

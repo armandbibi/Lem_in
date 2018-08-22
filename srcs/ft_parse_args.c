@@ -8,20 +8,15 @@ void	print_fatal_error(char *str)
 	exit(0);
 }
 
-t_maze	*ft_parse_file(int ac, char **av)
+t_maze	*ft_parse_file(int ac, char **av, t_maze *maze)
 {
 	int fd;
-	t_maze	*maze;
 
-	maze = NULL;
 	if (ac <= 1)
 		print_fatal_error("no arguments");
 	fd = open(av[1], O_RDONLY);
 	if (fd < 1)
 		print_fatal_error("bad_file_descriptor");
-	maze = malloc(sizeof *maze);
-	if (maze == NULL)
-		print_fatal_error("");
-	maze = ft_parse_instructions(fd);
+	ft_parse_instructions(fd, maze);
 	return (maze);
 }

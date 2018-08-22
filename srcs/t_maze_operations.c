@@ -28,6 +28,8 @@ t_maze	*maze_append(t_maze *maze, char *str)
 {
 	t_instruction	*n_instru;
 
+	if (!str)
+		return (NULL);
 	n_instru = NULL;
 	if (!maze)
 		print_fatal_error("no maze for append");
@@ -37,6 +39,7 @@ t_maze	*maze_append(t_maze *maze, char *str)
 	n_instru->str = str;
 	n_instru->error = NULL;
 	n_instru->next = NULL;
+	n_instru->type = 0;
 	if (maze->tail == NULL)
 	{
 		n_instru->prev = NULL;
@@ -50,16 +53,12 @@ t_maze	*maze_append(t_maze *maze, char *str)
 		maze->tail = n_instru;
 		maze->length++;
 	}
-	return (maze);
+	return (NULL);
 }
 
-t_maze	*new_maze(void)
+t_maze	*new_maze(t_maze *maze)
 {
-	t_maze *maze;
 
-	maze = malloc(sizeof (*maze));
-	if (!maze)
-		print_fatal_error("");
 	maze->length = 0;
 	maze->head = NULL;
 	maze->tail = NULL;
