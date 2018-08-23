@@ -1,9 +1,9 @@
+#include "libft.h"
 #include "lem_in.h"
-
+#include <unistd.h>
 int		ft_is_room(t_instruction *tmp)
 {
 	char *str;
-
 	str = tmp-> str;
 	if (!str)
 		return 0;
@@ -31,7 +31,8 @@ int		ft_is_room(t_instruction *tmp)
 		str++;
 	if (*str)
 		return (0);
-	else return (1);
+	else
+		return (1);
 
 }
 
@@ -66,6 +67,11 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *index)
 			ft_add_error(tmp, "Bad syntax");
 			tmp = tmp->next;
 		}
+		if (!ft_turn_and_check(maze, &maze->have_start) && !ft_strcmp(tmp->str, "##start"))
+			ft_add_error(tmp, "2 start!!!");
+		if (!ft_turn_and_check(maze, &maze->have_end) && !ft_strcmp(tmp->str, "##end"))
+			ft_add_error(tmp, "2 ends!!!");
+
 	}
 	return (tmp);
 }

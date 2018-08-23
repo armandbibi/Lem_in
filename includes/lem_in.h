@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 21:21:46 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/23 19:39:35 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct				s_maze
 	t_instruction			*tail;
 	int						nbr_rooms;
 	t_adj_lst				*tab_adj;
+	int						have_start;
+	int						have_end;
 }							t_maze;
 
 t_maze						*ft_parse_file(int ac, char **av, t_maze *maze);
@@ -62,6 +64,7 @@ t_maze						*ft_catch_errors_maze(t_maze *maze);
 t_maze						*new_maze(t_maze *maze);
 t_maze						*maze_append(t_maze *maze, char *str);
 void						ft_show_instructs(t_maze *maze);
+int							ft_turn_and_check(t_maze *maze, int *value);
 
 t_instruction				*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru);
 t_instruction				*ft_parse_rooms(t_maze *maze, t_instruction *instru);
@@ -75,6 +78,6 @@ int							ft_atoi(char *str);
 
 t_adj_node  *new_adj_node(t_adj_lst *dest);
 t_adj_lst   *new_tab_adj(int nbr_rooms);
-void        ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_node *srcs);
+void        ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_lst *srcs);
 void        show_adj_lst_tab(t_adj_lst *tab, int size);
 #endif

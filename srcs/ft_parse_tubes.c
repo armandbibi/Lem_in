@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 21:23:22 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/23 19:27:04 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ int				ft_is_tube(t_instruction *tmp)
 	str = tmp->str;
 	if (!str)
 		return (0);
-	while (*str > 32 && *str != '-')
+	while (*str &&*str > 32 && *str != '-')
 		str++;
-	if (*str !=  '-')
+	if (!*str || *str !=  '-')
 		return (0);
-	while (*str && *str != ' ' && *str != '-')
+	while (*str)
 		str++;
 	if (*str)
-		return (1);
+		return (0);
 	return (1);
 }
 
-void			ft_implement_tube(t_maze *maze, char *tube)
+int			ft_implement_tube(t_maze *maze, char *tube)
 {
 	char	*srcs;
 	char	*dest;
@@ -65,22 +65,28 @@ void			ft_implement_tube(t_maze *maze, char *tube)
 	}
 	dest[j] = 0;
 	
-	int num_room;
-	t_adj_lst s = -1;
-	int d = -1;
+	int enumi;
+	t_adj_lst *s;
+	t_adj_lst *d;
 
-	num_room = 0;
-	while (num_room < maze->nbr_rooms)
+	s = NULL;
+	d = NULL;
+	enumi = 0;
+	while (enumi < maze->nbr_rooms)
 	{
-		if (!ft_strcmp(srcs,maze->tab_adj[num_room].name))
-			s = maze->tab_adj[num_room].numero;
-		if (!ft_strcmp(dest,maze->tab_adj[num_room].name))
-			d = maze->tab_adj[num_room].numero;
-		num_room++;
+		if (!ft_strcmp(maze->tab_adj[enumi].name,srcs))
+			s = &maze->tab_adj[enumi];
+		if (!ft_strcmp(maze->tab_adj[enumi].name,dest))
+			d = &maze->tab_adj[enumi];
+		enumi++;
 	}
-	printf("%d %d\n", s, d);
-	if (s  > 0 && d > 0)
+	if (s && d)
+	{
 		ft_add_lst_edge(maze->tab_adj, d, s);
+		return (1);
+	}
+	else
+		return (0);
 }
 
 t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
@@ -94,8 +100,10 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 	{
 		if (ft_is_tube(tmp))
 		{
-			ft_add_error(tmp, "good tube");
-			ft_implement_tube(maze, tmp->str);
+			if (ft_implement_tube(maze, tmp->str))
+				ft_add_error(tmp, "good tube");
+			else
+				ft_add_error(tmp, "rooms'name aren't good");
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/22 21:20:50 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/23 17:47:23 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ t_adj_lst	*new_tab_adj(int nbr_rooms)
 	return (new_tab);
 }
 
-void		ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_node *srcs)
+void		ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_lst *srcs)
 {
 	t_adj_node	*new_node;
+	(void)tab;
 
 	new_node = new_adj_node(dest);
-	new_node->next = tab[srcs].head;
-	tab[srcs].head = new_node;
+	new_node->next = srcs->head;
+	srcs->head = new_node;
+	new_node = new_adj_node(srcs);
+	new_node->next = dest->head;
+	dest->head = new_node;
 }
 
 void		show_adj_lst_tab(t_adj_lst *tab, int size)
@@ -60,10 +64,10 @@ void		show_adj_lst_tab(t_adj_lst *tab, int size)
 	while (v < size)
 	{
 		tmp = tab[v].head;
-		printf("name : %s\n\n", tab[v].name);
+		printf("name : %s\ndest:\n", tab[v].name);
 		while (tmp)
 		{
-			printf("dest = %d\n", tmp->dest + 1);
+			printf("%s ", tmp->dest->name);
 			tmp = tmp->next;
 		}
 		printf("\n");

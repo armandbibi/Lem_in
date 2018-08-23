@@ -62,5 +62,16 @@ t_maze	*new_maze(t_maze *maze)
 	maze->length = 0;
 	maze->head = NULL;
 	maze->tail = NULL;
+	maze->have_start = 0;
+	maze->have_end = 0;
 	return (maze);
+}
+
+int	ft_turn_and_check(t_maze *maze, int *value)
+{
+	(void)maze;
+	if (*value == 1)
+		return (0);
+	*value = 1;
+	return (1);
 }
