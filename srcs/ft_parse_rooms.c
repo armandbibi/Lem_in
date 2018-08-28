@@ -57,21 +57,17 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *index)
 				ft_add_error(tmp, "        start");
 			else if (tmp->type == LM_END)
 				ft_add_error(tmp, "        end");
-			tmp = tmp->next;
 			maze->nbr_rooms++;
 		}
 		else if (ft_is_command(tmp))
-				tmp = tmp->next;
+			;
 		else
-		{
 			ft_add_error(tmp, "Bad syntax");
-			tmp = tmp->next;
-		}
-		if (!ft_turn_and_check(maze, &maze->have_start) && !ft_strcmp(tmp->str, "##start"))
+		tmp = tmp->next;
+		if (tmp && !ft_strcmp(tmp->str, "##start") && !ft_turn_and_check(maze, &maze->have_start))
 			ft_add_error(tmp, "2 start!!!");
-		if (!ft_turn_and_check(maze, &maze->have_end) && !ft_strcmp(tmp->str, "##end"))
+		else if (tmp && !ft_strcmp(tmp->str, "##end") && !ft_turn_and_check(maze, &maze->have_end))
 			ft_add_error(tmp, "2 ends!!!");
-
 	}
 	return (tmp);
 }

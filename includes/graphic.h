@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/28 20:32:18 by abiestro         ###   ########.fr       */
+/*   Created: 2018/08/28 18:01:00 by abiestro          #+#    #+#             */
+/*   Updated: 2018/08/28 20:05:38 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
-#include "graphic.h"
+#ifndef GRAPHIC_C
+# define GRAPHIC_C
+# include "lem_in.h"
+# include "mlx.h"
 
-int	main(int ac, char **av)
+# define LM_SCREEN_X 1000
+# define LM_SCREEN_Y 700
+
+typedef struct		s_env_graphic
 {
-	t_maze			maze;
-//	t_env_graphic	env;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	t_maze			*maze;
+}					t_env_graphic;
 
-	new_maze(&maze);
-//	new_env_graphic(&env);
-	ft_parse_file(ac, av, &maze);
-}
+void				new_env_graphic(t_env_graphic *env);
+
+#endif

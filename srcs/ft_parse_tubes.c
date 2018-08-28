@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/23 19:27:04 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/28 17:31:53 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,44 @@ int				ft_is_tube(t_instruction *tmp)
 	return (1);
 }
 
+void		set_srcs_and_dest(char *tube, char **s, char **d)
+{
+	int i;
+	int j;
+	char *srcs;
+	char *dest;
+
+	i = 0;
+	j = 0;
+	while (tube[i] && tube[i] != '-')
+		i++;
+	while (tube[i + j])
+		j++;
+	srcs = malloc(sizeof(char) * i);
+	dest = malloc(sizeof(char) * j);
+	if (!srcs || !dest)
+		print_fatal_error("mallco error");
+	i = -1;
+	j = 0;
+	while (tube[++i] != '-')
+		srcs[i] = tube[i];
+	while (tube[i + ++j])
+		dest[j - 1] = tube[i + j];
+	srcs[i] = 0;
+	dest[j] = 0;
+	*s = srcs;
+	*d = dest;
+}
+#include <unistd.h>
 int			ft_implement_tube(t_maze *maze, char *tube)
 {
 	char	*srcs;
 	char	*dest;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	srcs = 0;
 	dest = 0;
-	while (tube[i] != '-')
-		i++;
-	srcs = malloc(sizeof(char) * i);
-	while (tube[i + j])
-		j++;
-	dest = malloc(sizeof(char) * j);
-	if (!srcs || !dest)
-		print_fatal_error("malloc error");
-	i = 0;
-	j = 0;
-	while (tube[i] != '-')
-	{
-		srcs[i] = tube[i];
-		i++;
-	}
-	srcs[i] = 0;
-	while (tube[i + j + 1] && j < 3)
-	{
-		dest[j] = tube[i + j + 1];
-		j++;
-	}
-	dest[j] = 0;
-	
+	set_srcs_and_dest(tube, &srcs, &dest);	
+printf("s = %s, d = %s\n", srcs, dest);
 	int enumi;
 	t_adj_lst *s;
 	t_adj_lst *d;
@@ -80,6 +84,8 @@ int			ft_implement_tube(t_maze *maze, char *tube)
 			d = &maze->tab_adj[enumi];
 		enumi++;
 	}
+	free(srcs);
+	free(dest);
 	if (s && d)
 	{
 		ft_add_lst_edge(maze->tab_adj, d, s);

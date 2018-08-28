@@ -6,10 +6,11 @@
 /*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 10:59:00 by triou             #+#    #+#             */
-/*   Updated: 2018/06/23 19:29:40 by triou            ###   ########.fr       */
+/*   Updated: 2018/08/28 19:59:18 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "get_next_line.h"
 
 static int	ft_list_push_back(t_line **blst, char **line, const int fd)
