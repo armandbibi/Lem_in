@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_maze_operations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/30 21:58:53 by abiestro          #+#    #+#             */
+/*   Updated: 2018/08/30 22:06:49 by abiestro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 #include <stdlib.h>
 #include "libft.h"
@@ -7,6 +19,7 @@
 void	ft_show_instructs(t_maze *maze)
 {
 	t_instruction	*tmp;
+
 	if (!maze)
 		print_fatal_error("maze is not allocated");
 	tmp = maze->head;
@@ -15,9 +28,9 @@ void	ft_show_instructs(t_maze *maze)
 		write(1, tmp->str, ft_strlen(tmp->str));
 		if (tmp->error != NULL)
 		{
-			write( 1, "\033[0;31m <-- ", 12);
-			write (1, tmp->error, ft_strlen(tmp->error));
-			write( 1, "\033[0m <-- ", 4);
+			write(1, "\033[0;31m <-- ", 12);
+			write(1, tmp->error, ft_strlen(tmp->error));
+			write(1, "\033[0m <-- ", 4);
 		}
 		write(1, "\n", 1);
 		tmp = tmp->next;
@@ -28,13 +41,10 @@ t_maze	*maze_append(t_maze *maze, char *str)
 {
 	t_instruction	*n_instru;
 
-	if (!str)
-		return (NULL);
-	n_instru = NULL;
-	if (!maze)
+	if (!maze || !str)
 		print_fatal_error("no maze for append");
-	n_instru = malloc(sizeof * n_instru);
-	if(n_instru == NULL)
+	n_instru = malloc(sizeof(t_instruction));
+	if (n_instru == NULL)
 		print_fatal_error("malloc error");
 	n_instru->str = str;
 	n_instru->error = NULL;
@@ -58,7 +68,6 @@ t_maze	*maze_append(t_maze *maze, char *str)
 
 t_maze	*new_maze(t_maze *maze)
 {
-
 	maze->length = 0;
 	maze->head = NULL;
 	maze->tail = NULL;
@@ -67,7 +76,7 @@ t_maze	*new_maze(t_maze *maze)
 	return (maze);
 }
 
-int	ft_turn_and_check(t_maze *maze, int *value)
+int		ft_turn_and_check(t_maze *maze, int *value)
 {
 	(void)maze;
 	if (*value == 1)

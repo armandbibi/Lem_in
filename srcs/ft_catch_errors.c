@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 19:26:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 02:08:32 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 23:35:43 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	if (!name)
 		print_fatal_error("malloc error");
 	i = 0;
-	while(value->str[i] != ' ')
+	while (value->str[i] != ' ')
 	{
 		name[i] = value->str[i];
 		i++;
@@ -37,6 +37,7 @@ void	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	lst->name = name;
 	lst->numero = numero;
 	lst->layer = INT_MAX;
+	lst->belong_to_pass = 0;
 }
 
 void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
@@ -50,7 +51,6 @@ void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
 	{
 		if (ft_is_room(reverse))
 		{
-			printf("reverse->tmp %s\n", reverse->str);
 			ft_set_do_lst(&maze->tab_adj[i], reverse, i);
 			if (reverse->type == LM_START)
 				maze->start = &maze->tab_adj[i];
@@ -61,7 +61,6 @@ void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
 		reverse = reverse->prev;
 	}
 }
-
 
 t_maze	*ft_catch_errors_maze(t_maze *maze)
 {

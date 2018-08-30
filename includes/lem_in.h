@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 02:47:53 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 21:27:57 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct				s_adj_lst
 	int						y;
 	int						x;
 	int						layer;
+	int						belong_to_pass;
 }							t_adj_lst;
 
 typedef struct				s_maze
@@ -68,6 +69,13 @@ typedef struct				s_queue
 	unsigned				capacity;
 	t_adj_lst				**array;
 }							t_queue;
+
+typedef struct				s_stack
+{
+	int						top;
+	unsigned				capacity;
+	t_adj_lst				**array;
+}							t_stack;
 /*
 ** functions for reading the file and initializing the maze
 */
@@ -75,6 +83,7 @@ t_maze						*ft_parse_file(int ac, char **av, t_maze *maze);
 t_maze						*ft_parse_instructions(int fd, t_maze *maze);
 t_maze						*ft_catch_errors_maze(t_maze *maze);
 t_maze						*new_maze(t_maze *maze);
+void						ft_del_maze(t_maze *maze);
 
 /*
 ** functions mostly usefull for controlling the instructions
@@ -114,5 +123,13 @@ int							ft_queue_is_full(t_queue *queue);
 int							ft_queue_is_empty(t_queue *queue);
 void						ft_enqueue(t_queue *queue, t_adj_lst *item);
 t_adj_lst					*ft_dequeue(t_queue *queue);
+
+/*
+** functions for controlling the stack
+*/
+t_stack						*new_stack(unsigned capacity);
+void						ft_stack_push(t_stack *stack, t_adj_lst *item);
+t_adj_lst					*ft_stack_pop(t_stack *stack);
+t_adj_lst					*ft_stack_see_top(t_stack *stack);
 
 #endif

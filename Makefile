@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/08/30 01:17:02 by abiestro         ###   ########.fr        #
+#    Updated: 2018/08/30 21:27:28 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,12 @@ ITEMS 	= lem_in.c \
 		 get_next_line.c \
 		 ft_atoi.c \
 		 bfs.c \
+		 ft_free_maze.c \
 		 t_maze_operations.c \
 		 t_adj_lst_operations.c \
 		 t_env_graphic_operations.c \
-		 t_queue_operations.c
+		 t_queue_operations.c \
+		 t_stack_operations.c \
 
 FRAME_WORK = -framework OpenGL -framework AppKit
 
@@ -48,7 +50,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
 	@make -C $(MLXLIB)
-	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
+	@$(CC) -g $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
 	@echo "success !!!!!!"
 	
 	

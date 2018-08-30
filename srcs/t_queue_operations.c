@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 00:06:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 01:10:24 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 20:45:29 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_queue			*new_queue(unsigned capacity)
 	new_queue->capacity = capacity;
 	new_queue->front = 0;
 	new_queue->rear = (int)capacity - 1;
+	new_queue->size = 0;
 	new_queue->array = (t_adj_lst **)malloc(sizeof(t_adj_lst *) * capacity);
 	if (!new_queue->array)
 		print_fatal_error("malloc error");
@@ -59,4 +60,11 @@ t_adj_lst		*ft_dequeue(t_queue *queue)
 	queue->front = (queue->front + 1) % queue->capacity;
 	queue->size = queue->size - 1;
 	return (item);
+}
+
+t_adj_lst		*ft_queue_front(t_queue *queue)
+{
+	if (queue->size == 0)
+		return (NULL);
+	return (queue->array[queue->front]);
 }

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 02:52:40 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 21:57:44 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_adj_node	*new_adj_node(t_adj_lst *dest)
 {
 	t_adj_node	*new_node;
 
-	new_node = malloc(sizeof(new_node));
+	new_node = malloc(sizeof(t_adj_node));
 	if (!new_node)
 		print_fatal_error("Malloc error");
 	new_node->dest = dest;
@@ -45,8 +45,8 @@ t_adj_lst	*new_tab_adj(int nbr_rooms)
 void		ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_lst *srcs)
 {
 	t_adj_node	*new_node;
-	(void)tab;
 
+	(void)tab;
 	new_node = new_adj_node(dest);
 	new_node->next = srcs->head;
 	srcs->head = new_node;
@@ -55,10 +55,10 @@ void		ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_lst *srcs)
 	dest->head = new_node;
 }
 
-void	ft_delete_node(t_adj_lst *lst, t_adj_node *node)
+void		ft_delete_node(t_adj_lst *lst, t_adj_node *node)
 {
 	t_adj_node	*tmp;
-	
+
 	tmp = lst->head;
 	if (tmp == node)
 	{
@@ -87,7 +87,7 @@ void		show_adj_lst_tab(t_maze *maze, t_adj_lst *tab, int size)
 	while (v < size)
 	{
 		tmp = tab[v].head;
-		if (maze->start== &tab[v])
+		if (maze->start == &tab[v])
 			printf("START ---> ");
 		if (maze->end == &tab[v])
 			printf("END ---> ");

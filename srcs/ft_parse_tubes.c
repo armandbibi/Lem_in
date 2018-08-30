@@ -6,13 +6,14 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/28 17:31:53 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 23:17:43 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 #include <stdlib.h>
+
 int				ft_is_tube(t_instruction *tmp)
 {
 	char *str;
@@ -20,9 +21,9 @@ int				ft_is_tube(t_instruction *tmp)
 	str = tmp->str;
 	if (!str)
 		return (0);
-	while (*str &&*str > 32 && *str != '-')
+	while (*str && *str > 32 && *str != '-')
 		str++;
-	if (!*str || *str !=  '-')
+	if (!*str || *str != '-')
 		return (0);
 	while (*str)
 		str++;
@@ -31,12 +32,12 @@ int				ft_is_tube(t_instruction *tmp)
 	return (1);
 }
 
-void		set_srcs_and_dest(char *tube, char **s, char **d)
+void			set_srcs_and_dest(char *tube, char **s, char **d)
 {
-	int i;
-	int j;
-	char *srcs;
-	char *dest;
+	int		i;
+	int		j;
+	char	*srcs;
+	char	*dest;
 
 	i = 0;
 	j = 0;
@@ -44,8 +45,8 @@ void		set_srcs_and_dest(char *tube, char **s, char **d)
 		i++;
 	while (tube[i + j])
 		j++;
-	srcs = malloc(sizeof(char) * i);
-	dest = malloc(sizeof(char) * j);
+	srcs = (char *)malloc(sizeof(char) * i + 1);
+	dest = (char *)malloc(sizeof(char) * j + 1);
 	if (!srcs || !dest)
 		print_fatal_error("mallco error");
 	i = -1;
@@ -55,34 +56,29 @@ void		set_srcs_and_dest(char *tube, char **s, char **d)
 	while (tube[i + ++j])
 		dest[j - 1] = tube[i + j];
 	srcs[i] = 0;
-	dest[j] = 0;
+	dest[j - 1] = 0;
 	*s = srcs;
 	*d = dest;
 }
-#include <unistd.h>
-int			ft_implement_tube(t_maze *maze, char *tube)
-{
-	char	*srcs;
-	char	*dest;
 
-	srcs = 0;
-	dest = 0;
-	set_srcs_and_dest(tube, &srcs, &dest);	
-printf("s = %s, d = %s\n", srcs, dest);
-	int enumi;
-	t_adj_lst *s;
-	t_adj_lst *d;
+int				ft_implement_tube(t_maze *maze, char *tube)
+{
+	char		*srcs;
+	char		*dest;
+	t_adj_lst	*s;
+	t_adj_lst	*d;
+	int			enumi;
 
 	s = NULL;
 	d = NULL;
-	enumi = 0;
-	while (enumi < maze->nbr_rooms)
+	enumi = -1;
+	set_srcs_and_dest(tube, &srcs, &dest);
+	while (++enumi < maze->nbr_rooms)
 	{
-		if (!ft_strcmp(maze->tab_adj[enumi].name,srcs))
+		if (!ft_strcmp(maze->tab_adj[enumi].name, srcs))
 			s = &maze->tab_adj[enumi];
-		if (!ft_strcmp(maze->tab_adj[enumi].name,dest))
+		if (!ft_strcmp(maze->tab_adj[enumi].name, dest))
 			d = &maze->tab_adj[enumi];
-		enumi++;
 	}
 	free(srcs);
 	free(dest);
@@ -91,8 +87,7 @@ printf("s = %s, d = %s\n", srcs, dest);
 		ft_add_lst_edge(maze->tab_adj, d, s);
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)

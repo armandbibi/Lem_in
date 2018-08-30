@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_nbr_ants.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/30 23:32:18 by abiestro          #+#    #+#             */
+/*   Updated: 2018/08/30 23:32:37 by abiestro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-int		ft_is_nbr_ants(t_instruction *c_instru)
+int				ft_is_nbr_ants(t_instruction *c_instru)
 {
 	char *to_check;
 
