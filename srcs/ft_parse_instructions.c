@@ -12,6 +12,5 @@ t_maze	*ft_parse_instructions(int fd, t_maze *maze)
 	free(line);
 	ft_catch_errors_maze(maze);
 	ft_show_instructs(maze);
-	show_adj_lst_tab(maze->tab_adj, maze->nbr_rooms);
 	return (maze);
 }

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/23 17:47:23 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 02:52:40 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,30 @@ void		ft_add_lst_edge(t_adj_lst *tab, t_adj_lst *dest, t_adj_lst *srcs)
 	dest->head = new_node;
 }
 
-void		show_adj_lst_tab(t_adj_lst *tab, int size)
+void	ft_delete_node(t_adj_lst *lst, t_adj_node *node)
+{
+	t_adj_node	*tmp;
+	
+	tmp = lst->head;
+	if (tmp == node)
+	{
+		lst->head = tmp->next;
+		free(tmp);
+		return ;
+	}
+	while (tmp)
+	{
+		if (tmp->next == node)
+		{
+			tmp->next = node->next;
+			free(node);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void		show_adj_lst_tab(t_maze *maze, t_adj_lst *tab, int size)
 {
 	int			v;
 	t_adj_node	*tmp;
@@ -64,7 +87,11 @@ void		show_adj_lst_tab(t_adj_lst *tab, int size)
 	while (v < size)
 	{
 		tmp = tab[v].head;
-		printf("name : %s\ndest:\n", tab[v].name);
+		if (maze->start== &tab[v])
+			printf("START ---> ");
+		if (maze->end == &tab[v])
+			printf("END ---> ");
+		printf("name : %s, layer = %d\ndest:\n", tab[v].name, tab[v].layer);
 		while (tmp)
 		{
 			printf("%s ", tmp->dest->name);

@@ -63,11 +63,11 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *index)
 			;
 		else
 			ft_add_error(tmp, "Bad syntax");
-		tmp = tmp->next;
 		if (tmp && !ft_strcmp(tmp->str, "##start") && !ft_turn_and_check(maze, &maze->have_start))
 			ft_add_error(tmp, "2 start!!!");
 		else if (tmp && !ft_strcmp(tmp->str, "##end") && !ft_turn_and_check(maze, &maze->have_end))
 			ft_add_error(tmp, "2 ends!!!");
+		tmp = tmp->next;
 	}
 	return (tmp);
 }

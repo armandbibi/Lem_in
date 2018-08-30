@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/08/28 20:11:36 by abiestro         ###   ########.fr        #
+#    Updated: 2018/08/30 01:17:02 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,11 @@ ITEMS 	= lem_in.c \
 		 ft_errors.c \
 		 get_next_line.c \
 		 ft_atoi.c \
+		 bfs.c \
 		 t_maze_operations.c \
 		 t_adj_lst_operations.c \
-		 t_env_graphic_operations.c
+		 t_env_graphic_operations.c \
+		 t_queue_operations.c
 
 FRAME_WORK = -framework OpenGL -framework AppKit
 

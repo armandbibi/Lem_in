@@ -6,13 +6,14 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 19:26:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/23 19:23:06 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/30 02:08:32 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <limits.h>
 
 void	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 {
@@ -35,6 +36,7 @@ void	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	name[i] = 0;
 	lst->name = name;
 	lst->numero = numero;
+	lst->layer = INT_MAX;
 }
 
 void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
@@ -50,6 +52,10 @@ void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
 		{
 			printf("reverse->tmp %s\n", reverse->str);
 			ft_set_do_lst(&maze->tab_adj[i], reverse, i);
+			if (reverse->type == LM_START)
+				maze->start = &maze->tab_adj[i];
+			if (reverse->type == LM_END)
+				maze->end = &maze->tab_adj[i];
 			i--;
 		}
 		reverse = reverse->prev;
