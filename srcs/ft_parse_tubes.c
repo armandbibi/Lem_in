@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:17:43 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/31 14:05:27 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int				ft_implement_tube(t_maze *maze, char *tube)
 	set_srcs_and_dest(tube, &srcs, &dest);
 	while (++enumi < maze->nbr_rooms)
 	{
-		if (!ft_strcmp(maze->tab_adj[enumi].name, srcs))
+		if (ft_strequ(maze->tab_adj[enumi].name, srcs))
 			s = &maze->tab_adj[enumi];
-		if (!ft_strcmp(maze->tab_adj[enumi].name, dest))
+		if (ft_strequ(maze->tab_adj[enumi].name, dest))
 			d = &maze->tab_adj[enumi];
 	}
 	free(srcs);

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 21:57:44 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/08/31 16:10:27 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		show_adj_lst_tab(t_maze *maze, t_adj_lst *tab, int size)
 			printf("START ---> ");
 		if (maze->end == &tab[v])
 			printf("END ---> ");
-		printf("name : %s, layer = %d\ndest:\n", tab[v].name, tab[v].layer);
+		printf("\nname : %s, layer = %d\ndest:\n", tab[v].name, tab[v].layer);
 		while (tmp)
 		{
 			printf("%s ", tmp->dest->name);

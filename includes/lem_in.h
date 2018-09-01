@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 21:27:57 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/01 13:59:27 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct				s_adj_lst
 	struct s_adj_node		*head;
 	char 					*name;
 	int						numero;
-	int						y;
-	int						x;
 	int						layer;
+	struct s_adj_lst		*prev_in_graph;
 	int						belong_to_pass;
 }							t_adj_lst;
 

@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/08/30 21:27:28 by abiestro         ###   ########.fr        #
+#    Updated: 2018/08/31 14:11:46 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
 	@make -C $(MLXLIB)
-	@$(CC) -g $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
+	@$(CC) -g -fsanitize=address $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
 	@echo "success !!!!!!"
 	
 	

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 19:26:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:35:43 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/01 14:00:26 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	lst->numero = numero;
 	lst->layer = INT_MAX;
 	lst->belong_to_pass = 0;
+	lst->prev_in_graph = NULL;
 }
 
 void	ft_set_adj_lst(t_maze *maze, t_instruction *index)
