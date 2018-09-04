@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/01 15:04:00 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 22:37:06 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,29 @@ static int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 	return (size);
 }
 
-	static void		iter_through_destination
+static int			ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
+{
+	t_adj_lst	*room;
+	int			size;
+	t_stack		*stock;
+
+	room = room_before_end;
+	size = 0;
+	stock = new_stack(room->layer + 2);
+	ft_stack_push(stock, maze->end);
+	while (room->prev_in_graph)
+	{
+		ft_stack_push(stock, room);
+		room->belong_to_pass = 1;
+		room = room->prev_in_graph;
+		size++;
+	}
+	ft_stack_push(stock, maze->start);
+	maze->good_ways[maze->nbr_of_good_ways++] = stock;
+	return (size);
+}
+
+static void		iter_through_destination
 (t_adj_lst *current_room, t_queue *queue)
 {
 	t_adj_node	*current_node;
@@ -83,13 +105,14 @@ void			ft_bfs(t_maze *maze)
 		ft_add_to_current_pass(current_room, lst_of_valid_pass);
 		if (current_room == maze->end)
 		{
-			if (ft_show_valid_stack(maze, current_room->prev_in_graph) > 0)
+			if (ft_show_valid_stack(maze, current_room->prev_in_graph))
 			{
-				exit(0);
 				while (ft_dequeue(queue))
 					;
 				ft_bfs(maze);
 			}
+				ft_add_good_way(maze, current_room);
+				exit(0);
 		}
 		else
 			iter_through_destination(current_room, queue);

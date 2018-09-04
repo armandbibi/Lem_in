@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/08/31 14:11:46 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/03 22:51:24 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ ITEMS 	= lem_in.c \
 	 	 ft_parse_nbr_ants.c \
 	 	 ft_parse_rooms.c \
 	 	 ft_parse_tubes.c \
+		 ft_check_parameters.c \
 	 	 ft_is_command.c \
 		 ft_errors.c \
 		 get_next_line.c \
@@ -50,7 +51,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
 	@make -C $(MLXLIB)
-	@$(CC) -g -fsanitize=address $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
 	@echo "success !!!!!!"
 	
 	
@@ -60,7 +61,7 @@ $(OBJS) : | $(ODIR)
 $(ODIR):
 	mkdir $(ODIR)
 
-$(ODIR)/%.o : $(SDIR)/%.c $(IDIR)
+$(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR) -I $(MLXLIB)
 
 clean :

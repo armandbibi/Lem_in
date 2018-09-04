@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:58:53 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 22:06:49 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:32:24 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ t_maze	*new_maze(t_maze *maze)
 	maze->tail = NULL;
 	maze->have_start = 0;
 	maze->have_end = 0;
+	if (!(maze->good_ways = malloc(sizeof(t_stack *) * 10)))
+		print_fatal_error("ERROR_MALLOC");
+	maze->nbr_of_good_ways = 0;
 	return (maze);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/01 13:59:27 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 22:54:56 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct				s_maze
 	int						have_end;
 	t_adj_lst				*start;
 	t_adj_lst				*end;
+	struct s_stack			**good_ways;
+	int						nbr_of_good_ways;
 }							t_maze;
 
 typedef struct				s_queue
@@ -85,7 +87,7 @@ t_maze						*new_maze(t_maze *maze);
 void						ft_del_maze(t_maze *maze);
 
 /*
-** functions mostly usefull for controlling the instructions
+** functions mostly usefull for parsing the instructions
 */
 t_maze						*maze_append(t_maze *maze, char *str);
 void						ft_show_instructs(t_maze *maze);
@@ -99,6 +101,7 @@ int							ft_is_command(t_instruction *instru);
 t_instruction				*ft_add_error(t_instruction *dest, char *error);
 void						print_fatal_error(char *str);
 int							ft_atoi(char *str);
+int							ft_check_parameters(t_maze *maze);
 
 /*
 ** functions use during bfs 

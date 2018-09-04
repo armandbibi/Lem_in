@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:31:49 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 22:45:01 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int				ft_is_room(t_instruction *tmp)
 
 void			ft_add_type(t_instruction *tmp)
 {
-	ft_add_error(tmp, "good room");
 	if (!tmp->type)
 		tmp->type = LM_ROOM;
 	else if (tmp->type == LM_START)

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 17:32:17 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:33:28 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 22:59:30 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_is_command(t_instruction *instru)
 	else if (!ft_strcmp(instru->str, "##end"))
 	{
 		instru = instru->next;
-		while (instru && !(ft_is_room(instru)))
+		while (instru && *instru->str == '#' && !(ft_is_room(instru)))
 			instru = instru->next;
 		instru->type = LM_END;
 		return (1);

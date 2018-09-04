@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/31 14:05:27 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/03 22:45:28 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 		if (ft_is_tube(tmp))
 		{
 			if (ft_implement_tube(maze, tmp->str))
-				ft_add_error(tmp, "good tube");
+				;
 			else
 				ft_add_error(tmp, "rooms'name aren't good");
 		}
