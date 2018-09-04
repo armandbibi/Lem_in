@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/03 22:45:01 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/04 15:07:17 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 			return (tmp);
 		if (ft_is_room(tmp))
 		{
-			ft_add_type(tmp);
+		//	ft_add_type(tmp);
 			maze->nbr_rooms++;
 		}
 		else if (ft_is_command(tmp))

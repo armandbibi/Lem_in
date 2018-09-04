@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:33:42 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:33:44 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/04 15:06:28 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ t_maze	*ft_parse_instructions(int fd, t_maze *maze)
 	}
 	free(line);
 	ft_catch_errors_maze(maze);
-	ft_show_instructs(maze);
 	return (maze);
 }
