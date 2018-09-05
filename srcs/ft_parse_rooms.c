@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/04 15:07:17 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/05 20:55:39 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,6 @@ int				ft_is_room(t_instruction *tmp)
 	return (ft_is_room2(str));
 }
 
-void			ft_add_type(t_instruction *tmp)
-{
-	if (!tmp->type)
-		tmp->type = LM_ROOM;
-	else if (tmp->type == LM_START)
-		ft_add_error(tmp, "        start");
-	else if (tmp->type == LM_END)
-		ft_add_error(tmp, "        end");
-}
-
 t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 {
 	maze->nbr_rooms = 0;
@@ -74,10 +64,7 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 		if (ft_is_tube(tmp))
 			return (tmp);
 		if (ft_is_room(tmp))
-		{
-		//	ft_add_type(tmp);
 			maze->nbr_rooms++;
-		}
 		else if (ft_is_command(tmp))
 			;
 		else

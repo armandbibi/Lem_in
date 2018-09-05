@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/03 22:54:56 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/05 20:38:28 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # define LM_START		4
 # define LM_END			5
 # define LM_COM			6
+
+typedef	struct				s_error
+{
+	char					*msg;
+	int						level;
+}							t_error;
 
 typedef struct				s_instruction
 {
@@ -60,6 +66,7 @@ typedef struct				s_maze
 	t_adj_lst				*end;
 	struct s_stack			**good_ways;
 	int						nbr_of_good_ways;
+	struct s_error			*error;
 }							t_maze;
 
 typedef struct				s_queue
@@ -77,12 +84,14 @@ typedef struct				s_stack
 	unsigned				capacity;
 	t_adj_lst				**array;
 }							t_stack;
+
+t_maze						*ft_parse(t_maze *maze, int ac, char **av);
+int							ft_parse_arguments(int ac, char **av, t_maze *maze);
+t_maze						*ft_read_file(int fd, t_maze *maze);
 /*
 ** functions for reading the file and initializing the maze
 */
-t_maze						*ft_parse_file(int ac, char **av, t_maze *maze);
-t_maze						*ft_parse_instructions(int fd, t_maze *maze);
-t_maze						*ft_catch_errors_maze(t_maze *maze);
+t_maze						*ft_parse_instructions(t_maze *maze);
 t_maze						*new_maze(t_maze *maze);
 void						ft_del_maze(t_maze *maze);
 
@@ -134,4 +143,8 @@ void						ft_stack_push(t_stack *stack, t_adj_lst *item);
 t_adj_lst					*ft_stack_pop(t_stack *stack);
 t_adj_lst					*ft_stack_see_top(t_stack *stack);
 
+/*
+** functions fo controlling errors
+*/
+t_error						*new_error(char *msg, int level);
 #endif

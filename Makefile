@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/03 22:51:24 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/05 20:47:11 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ ODIR	= objs
 LDIR	= libft
 MLXLIB	= ./minilibix/
 ITEMS 	= lem_in.c \
+		 ft_parse.c \
 	 	 ft_parse_args.c \
+	 	 ft_read_file.c \
 	 	 ft_parse_instructions.c \
-	 	 ft_catch_errors.c \
 	 	 ft_parse_nbr_ants.c \
 	 	 ft_parse_rooms.c \
 	 	 ft_parse_tubes.c \
@@ -40,6 +41,7 @@ ITEMS 	= lem_in.c \
 		 t_env_graphic_operations.c \
 		 t_queue_operations.c \
 		 t_stack_operations.c \
+		 t_error_operations.c \
 
 FRAME_WORK = -framework OpenGL -framework AppKit
 
@@ -62,7 +64,8 @@ $(ODIR):
 	mkdir $(ODIR)
 
 $(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR) -I $(MLXLIB)
+	@$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR) -I $(MLXLIB)
+	@echo "compiling $<"
 
 clean :
 	@$(MAKE) -C $(LDIR) clean

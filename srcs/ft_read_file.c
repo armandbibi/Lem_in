@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_args.c                                    :+:      :+:    :+:   */
+/*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 23:34:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/05 20:56:47 by abiestro         ###   ########.fr       */
+/*   Created: 2018/08/30 23:33:42 by abiestro          #+#    #+#             */
+/*   Updated: 2018/09/05 20:44:46 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <stdlib.h>
-#include <fcntl.h>
+#include "get_next_line.h"
 
-void	print_fatal_error(char *str)
+t_maze	*ft_read_file(int fd, t_maze *maze)
 {
-	printf("%s\n", str);
-	exit(0);
-}
+	char	*line;
+	int		read_return;
 
-int		ft_parse_arguments(int ac, char **av, t_maze *maze)
-{
-	int fd;
-
-	fd = 0;
-	if (ac < 2 )
-		maze->error = new_error("no arguments", 3);
-	else if (ac > 2)
-		maze->error = new_error("too much arguments", 3);
-	else
+	while ((read_return = get_next_line(fd, &line)) > 0)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd < 1)
-			print_fatal_error("bad_file_descriptor");
+		maze_append(maze, line);
 	}
-	return (fd);
+	if (read_return < 0)
+		print_fatal_error("invalid read");
+	free(line);
+	return (maze);
 }

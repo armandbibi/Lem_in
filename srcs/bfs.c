@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/03 22:37:06 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/05 19:46:46 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 		current_room = current_room->prev_in_graph;
 		size++;
 	}
+	printf("%s", maze->start->name);
 	printf("\n\n");
 	return (size);
 }
