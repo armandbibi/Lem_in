@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/05 20:47:11 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/06 15:42:36 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ ITEMS 	= lem_in.c \
 	 	 ft_parse_nbr_ants.c \
 	 	 ft_parse_rooms.c \
 	 	 ft_parse_tubes.c \
+		 ft_set_adj_lst.c \
 		 ft_check_parameters.c \
 	 	 ft_is_command.c \
-		 ft_errors.c \
 		 get_next_line.c \
 		 ft_atoi.c \
 		 bfs.c \

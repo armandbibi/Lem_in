@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 18:06:32 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 21:56:29 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 15:37:54 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ t_stack		*new_stack(unsigned capacity)
 
 	new_stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_stack)
-		print_fatal_error("malloc error");
+		print_fatal_error(new_error("malloc error", 3));
 	new_stack->capacity = capacity;
 	new_stack->top = -1;
 	new_stack->array = (t_adj_lst **)malloc(sizeof(t_adj_lst *) * capacity);
 	if (!new_stack->array)
-		print_fatal_error("malloc error");
+		print_fatal_error(new_error("malloc error", 3));
 	return (new_stack);
 }
 

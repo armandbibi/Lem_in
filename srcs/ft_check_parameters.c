@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:48:32 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/04 15:12:43 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 16:53:45 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ int		ft_check_parameters(t_maze *maze)
 
 	instru = maze->head;
 	if (!maze || !maze->head || !maze->start || !maze->end)
-		return (0);
-	while (instru)
-	{
-		if (instru->error)
-			print_fatal_error(instru->error);
-		instru =instru->next;
-	}
+		print_fatal_error(new_error("error", 3));
 	return (1);
 }

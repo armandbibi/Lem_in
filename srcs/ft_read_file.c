@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:33:42 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/05 20:44:46 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 15:16:03 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_maze	*ft_read_file(int fd, t_maze *maze)
 		maze_append(maze, line);
 	}
 	if (read_return < 0)
-		print_fatal_error("invalid read");
+	{
+		maze->error = set_error(maze->error, "invalid read", 3);
+		print_fatal_error(maze->error);
+	}
 	free(line);
 	return (maze);
 }

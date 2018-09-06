@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/05 20:38:28 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 15:11:55 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef	struct				s_error
 typedef struct				s_instruction
 {
 	char					*str;
-	char					*error;
+	struct s_error			*error;
 	struct s_instruction	*next;
 	struct s_instruction	*prev;
 	int						type;
@@ -108,9 +108,10 @@ int							ft_is_tube(t_instruction *tmp);
 int							ft_is_room(t_instruction *tmp);
 int							ft_is_command(t_instruction *instru);
 t_instruction				*ft_add_error(t_instruction *dest, char *error);
-void						print_fatal_error(char *str);
+void						print_fatal_error(t_error *str);
 int							ft_atoi(char *str);
 int							ft_check_parameters(t_maze *maze);
+void						ft_set_adj_lst(t_maze *maze, t_instruction *index);
 
 /*
 ** functions use during bfs 
@@ -147,4 +148,5 @@ t_adj_lst					*ft_stack_see_top(t_stack *stack);
 ** functions fo controlling errors
 */
 t_error						*new_error(char *msg, int level);
+t_error						*set_error(t_error *old_error, char *new_msg, int new_level);
 #endif

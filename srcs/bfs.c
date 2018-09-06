@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/05 19:46:46 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 19:27:37 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static int		is_layer_attribuate(t_adj_lst *room, t_adj_node *node)
 {
 	if (!room || !node)
-		print_fatal_error("problem in layer attribution");
+		print_fatal_error(new_error("memory according problem I guess", 3));
 	return ((node->dest->layer <= room->layer) || node->dest->belong_to_pass);
 }
 
@@ -29,7 +29,7 @@ static void		ft_add_to_current_pass(t_adj_lst *room, t_stack *stack)
 	ft_stack_push(stack, room);
 }
 
-static int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
+int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 {
 	t_adj_lst	*current_room;
 	int			size;
@@ -90,6 +90,16 @@ static void		iter_through_destination
 	}
 }
 
+void			show_the_passes(t_stack **lst_of_good_pass)
+{
+	t_stack		*s;
+	t_adj_lst	*room;
+
+	s = *lst_of_good_pass;
+	while ((room = ft_stack_pop(s)))
+		printf("%s\n", room->name);
+}
+
 void			ft_bfs(t_maze *maze)
 {
 	t_queue		*queue;
@@ -106,7 +116,7 @@ void			ft_bfs(t_maze *maze)
 		ft_add_to_current_pass(current_room, lst_of_valid_pass);
 		if (current_room == maze->end)
 		{
-			if (ft_show_valid_stack(maze, current_room->prev_in_graph))
+			if (ft_add_good_way(maze, current_room->prev_in_graph))
 			{
 				while (ft_dequeue(queue))
 					;
@@ -118,6 +128,7 @@ void			ft_bfs(t_maze *maze)
 		else
 			iter_through_destination(current_room, queue);
 	}
+	show_the_passes(maze->good_ways);
 	free(lst_of_valid_pass->array);
 	free(lst_of_valid_pass);
 	free(queue->array);

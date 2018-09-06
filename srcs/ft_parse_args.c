@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:34:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/05 20:56:47 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 15:06:14 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-void	print_fatal_error(char *str)
+void	print_fatal_error(t_error *str)
 {
-	printf("%s\n", str);
+	printf("%s\n", str->msg);
 	exit(0);
 }
 
@@ -33,7 +33,10 @@ int		ft_parse_arguments(int ac, char **av, t_maze *maze)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd < 1)
-			print_fatal_error("bad_file_descriptor");
+		{
+			maze->error = set_error(maze->error, "error", 3);
+			print_fatal_error(maze->error);
+		}
 	}
 	return (fd);
 }

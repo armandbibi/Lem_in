@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 18:10:12 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:13:23 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/06 15:35:14 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	new_env_graphic(t_env_graphic *new_env)
 {
 	new_env = malloc(sizeof(*new_env));
 	if (!new_env)
-		print_fatal_error("malloc_error");
+		print_fatal_error(new_error("malloc_error", 3));
 	new_env->mlx = mlx_init();
 	new_env->win = mlx_new_window(new_env->mlx,
 			LM_SCREEN_X, LM_SCREEN_Y, "LEM_IN");
