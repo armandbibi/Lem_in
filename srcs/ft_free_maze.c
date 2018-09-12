@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:25:55 by abiestro          #+#    #+#             */
-/*   Updated: 2018/08/30 23:34:37 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 18:04:45 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ void	del_all_nodes(t_adj_lst *lst)
 	free(lst->name);
 }
 
+void	ft_del_good_ways(t_stack **good_ways, int nbr_of_valid_way)
+{
+	int n;
+
+	n = 0;
+	while (n < nbr_of_valid_way)
+	{
+		ft_del_stack(good_ways[n]);
+		n++;
+	}
+	free(good_ways);
+}
 void	ft_del_maze(t_maze *maze)
 {
 	t_instruction	*tmp_instruction;
@@ -43,6 +55,7 @@ void	ft_del_maze(t_maze *maze)
 		free(tmp_instruction2->error);
 		free(tmp_instruction2);
 	}
+	ft_del_good_ways(maze->good_ways, maze->nbr_of_good_ways);
 	lst_iterateur = 0;
 	while (lst_iterateur < maze->nbr_rooms)
 	{

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 15:11:55 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 17:01:13 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ void						ft_set_adj_lst(t_maze *maze, t_instruction *index);
 /*
 ** functions use during bfs 
 */
-void						ft_bfs(t_maze *maze);
+int							ft_bfs(t_maze *maze);
+void						show_the_passes(t_stack **lst_of_good_pass);
 
 /*
 ** functions for adjacent_list
@@ -135,6 +136,7 @@ int							ft_queue_is_full(t_queue *queue);
 int							ft_queue_is_empty(t_queue *queue);
 void						ft_enqueue(t_queue *queue, t_adj_lst *item);
 t_adj_lst					*ft_dequeue(t_queue *queue);
+void						ft_del_queue(t_queue *queue);
 
 /*
 ** functions for controlling the stack
@@ -143,6 +145,7 @@ t_stack						*new_stack(unsigned capacity);
 void						ft_stack_push(t_stack *stack, t_adj_lst *item);
 t_adj_lst					*ft_stack_pop(t_stack *stack);
 t_adj_lst					*ft_stack_see_top(t_stack *stack);
+void						ft_del_stack(t_stack *stack);
 
 /*
 ** functions fo controlling errors

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 00:06:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 15:36:54 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 17:00:02 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,10 @@ t_adj_lst		*ft_queue_front(t_queue *queue)
 	if (queue->size == 0)
 		return (NULL);
 	return (queue->array[queue->front]);
+}
+
+void			ft_del_queue(t_queue *queue)
+{
+	free(queue->array);
+	free(queue);
 }

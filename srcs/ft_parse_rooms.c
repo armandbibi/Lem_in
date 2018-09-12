@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 17:28:59 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:33:43 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int				ft_is_room(t_instruction *tmp)
 	str = tmp->str;
 	if (!str)
 		return (0);
+	if (ft_strchr(str, '-') || ft_strequ(str, ""))
+		return (0);
 	if (*str && *str > ' ' && *str != '#' && *str != 'L')
 		str++;
 	else
@@ -61,20 +63,20 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 		exit(0);
 	while (tmp)
 	{
-		if (ft_is_tube(tmp))
-			return (tmp);
 		if (ft_is_room(tmp))
 			maze->nbr_rooms++;
+		else if (ft_is_tube(tmp))
+			return (tmp);
 		else if (ft_is_command(tmp))
 			;
 		else
-			tmp->error = set_error(tmp->error, "Bad syntax", 2);
+			print_fatal_error(new_error("bad syntax on room", 3));
 		if (tmp && !ft_strcmp(tmp->str, "##start") &&
 				!ft_turn_and_check(maze, &maze->have_start))
-			tmp->error = set_error(tmp->error, "2 start!!!", 1);
+			print_fatal_error(new_error("2 start", 3));
 		else if (tmp && !ft_strcmp(tmp->str, "##end") &&
 				!ft_turn_and_check(maze, &maze->have_end))
-			tmp->error = set_error(tmp->error, "2 ends!!!", 1);
+			print_fatal_error(new_error("2 end", 3));
 		tmp = tmp->next;
 	}
 	return (tmp);

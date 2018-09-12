@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:58:53 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 17:21:31 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:45:18 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_show_instructs(t_maze *maze)
 	if (!maze)
 		print_fatal_error(new_error("maze is not allocated", 1));
 	tmp = maze->head;
-	while (tmp)
+	while (tmp && tmp->str)
 	{
 		if (!tmp->error)
 			write(1, tmp->str, ft_strlen(tmp->str));
@@ -33,6 +33,7 @@ void	ft_show_instructs(t_maze *maze)
 			write(1, "\033[0;31m <-- ", 12);
 			write(1, tmp->error->msg, ft_strlen(tmp->error->msg));
 			write(1, "\033[0m <-- ", 4);
+			return;
 		}
 		write(1, "\n", 1);
 		tmp = tmp->next;

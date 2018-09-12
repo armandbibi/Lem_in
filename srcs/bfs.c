@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 19:27:37 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 18:44:27 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@ static int		is_layer_attribuate(t_adj_lst *room, t_adj_node *node)
 	if (!room || !node)
 		print_fatal_error(new_error("memory according problem I guess", 3));
 	return ((node->dest->layer <= room->layer) || node->dest->belong_to_pass);
-}
-
-static void		ft_add_to_current_pass(t_adj_lst *room, t_stack *stack)
-{
-	while (ft_stack_see_top(stack) &&
-			room->layer < ft_stack_see_top(stack)->layer)
-		ft_stack_pop(stack);
-	ft_stack_push(stack, room);
 }
 
 int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
@@ -50,7 +42,7 @@ int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 	return (size);
 }
 
-static int			ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
+static int		ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
 {
 	t_adj_lst	*room;
 	int			size;
@@ -73,7 +65,7 @@ static int			ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
 }
 
 static void		iter_through_destination
-(t_adj_lst *current_room, t_queue *queue)
+	(t_adj_lst *current_room, t_queue *queue)
 {
 	t_adj_node	*current_node;
 
@@ -90,30 +82,17 @@ static void		iter_through_destination
 	}
 }
 
-void			show_the_passes(t_stack **lst_of_good_pass)
-{
-	t_stack		*s;
-	t_adj_lst	*room;
-
-	s = *lst_of_good_pass;
-	while ((room = ft_stack_pop(s)))
-		printf("%s\n", room->name);
-}
-
-void			ft_bfs(t_maze *maze)
+int				ft_bfs(t_maze *maze)
 {
 	t_queue		*queue;
 	t_adj_lst	*current_room;
-	t_stack		*lst_of_valid_pass;
 
 	queue = new_queue(maze->nbr_rooms);
 	maze->start->layer = 0;
 	ft_enqueue(queue, maze->start);
-	lst_of_valid_pass = new_stack(maze->nbr_rooms);
 	while (!ft_queue_is_empty(queue))
 	{
 		current_room = ft_dequeue(queue);
-		ft_add_to_current_pass(current_room, lst_of_valid_pass);
 		if (current_room == maze->end)
 		{
 			if (ft_add_good_way(maze, current_room->prev_in_graph))
@@ -122,15 +101,12 @@ void			ft_bfs(t_maze *maze)
 					;
 				ft_bfs(maze);
 			}
-				ft_add_good_way(maze, current_room);
-				exit(0);
+			ft_del_queue(queue);
+			return (1);
 		}
 		else
 			iter_through_destination(current_room, queue);
 	}
-	show_the_passes(maze->good_ways);
-	free(lst_of_valid_pass->array);
-	free(lst_of_valid_pass);
-	free(queue->array);
-	free(queue);
+	ft_del_queue(queue);
+	return (0);
 }

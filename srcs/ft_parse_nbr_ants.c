@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:32:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 20:07:16 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 18:09:58 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_instruction	*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru)
 				print_fatal_error(new_error("no ants", 1));
 			return (tmp->next);
 		}
-		else if (ft_is_command(tmp) && !ft_strcmp("##start", tmp->str), !ft_strcmp("##end", tmp->str) )
+		else if (ft_strequ("##start", tmp->str) ||
+				ft_strequ("##end", tmp->str) || *tmp->str == '#')
 			tmp = tmp->next;
 		else
 		{

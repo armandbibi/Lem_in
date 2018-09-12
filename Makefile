@@ -6,13 +6,13 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/06 15:42:36 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/12 18:43:41 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= lem_in
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra 
+CFLAGS	= -Wall -Werror -Wextra $(debug)
 SDIR	= srcs
 INC 	= ./minilibix/ \
 		  ./libft/
@@ -32,6 +32,7 @@ ITEMS 	= lem_in.c \
 		 ft_set_adj_lst.c \
 		 ft_check_parameters.c \
 	 	 ft_is_command.c \
+		 display_passes.c \
 		 get_next_line.c \
 		 ft_atoi.c \
 		 bfs.c \

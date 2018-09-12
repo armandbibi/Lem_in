@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 18:04:47 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:52:45 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ int				ft_is_tube(t_instruction *tmp)
 	char *str;
 
 	str = tmp->str;
-	if (!str || *str == '#' || *str == 'L')
+	if (!str || !*str || *str == '#' || *str == 'L' || ft_strequ(str, " "))
 		return (0);
 	while (*str && *str > 32 && *str != '-')
 		str++;
 	if (!*str || *str != '-')
 		return (0);
-	while (*str)
+	str++;
+	while (*str && *str != '-' && *str != ' ')
 		str++;
 	if (*str)
 		return (0);
@@ -97,7 +98,9 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 	tmp = index;
 	while (tmp)
 	{
-		if (ft_is_tube(tmp))
+		if (ft_is_command(tmp))
+			tmp = tmp->next;
+		else if (ft_is_tube(tmp))
 		{
 			if (ft_implement_tube(maze, tmp->str))
 				;
@@ -106,10 +109,13 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 					tmp->error = set_error(tmp->error, "rooms'name aren't good", 2);
 					return (tmp);
 			}
+			tmp = tmp->next;
 		}
-		else if (!ft_is_command(tmp))
-			tmp->error = set_error(tmp->error, "not a good tube", 2);
-		tmp = tmp->next;
+		else
+		{
+			tmp->error = set_error(tmp->error, "don t know what you mean with this tube", 2);
+			return (tmp);
+		}
 	}
 	return (tmp);
 }
