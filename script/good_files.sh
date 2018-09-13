@@ -9,7 +9,7 @@ do
 	do
 		name=${file##*/}
 		printf "${GREEN}$name -> ${NC}"
-		./lem_in "$file"
+		./lem_in < "$file"
 	done
 done
 

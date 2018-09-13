@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 15:34:49 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 18:42:40 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_adj_node	*new_adj_node(t_adj_lst *dest)
 
 	new_node = malloc(sizeof(t_adj_node));
 	if (!new_node)
-		print_fatal_error(new_error("Malloc error", 3));
+		exit(0);
 	new_node->dest = dest;
 	new_node->next = NULL;
 	return (new_node);
@@ -32,7 +32,7 @@ t_adj_lst	*new_tab_adj(int nbr_rooms)
 
 	new_tab = malloc(sizeof(t_adj_lst) * nbr_rooms);
 	if (!new_tab)
-		print_fatal_error(new_error("malloc error", 3));
+		exit(0);
 	i = 0;
 	while (i < nbr_rooms)
 	{

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 17:01:13 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 18:44:57 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_instruction				*ft_add_error(t_instruction *dest, char *error);
 void						print_fatal_error(t_error *str);
 int							ft_atoi(char *str);
 int							ft_check_parameters(t_maze *maze);
-void						ft_set_adj_lst(t_maze *maze, t_instruction *index);
+int							ft_set_adj_lst(t_maze *maze, t_instruction *index);
 
 /*
 ** functions use during bfs 

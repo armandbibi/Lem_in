@@ -6,7 +6,7 @@ do
 	do
 		name=${file##*/}
 		echo $name
-		./lem_in "$file"
+		./lem_in < "$file"
 		echo ""
 	done
 done

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 19:57:14 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 15:58:49 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 18:35:52 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_error		*new_error(char *str, int level)
 
 	error = malloc(sizeof(t_error));
 	if (!error)
-		print_fatal_error(new_error("malloc error", 3));
+		exit(0);
 	error->msg = malloc(sizeof(char) * ft_strlen(str + 1));
 	if (!error->msg)
-		print_fatal_error(new_error("malloc error", 3));
+		exit(0);
 	ft_strcpy(error->msg, str);
 	error->level = level;
 	return (error);

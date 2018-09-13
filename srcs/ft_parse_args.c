@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:34:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 15:06:14 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 18:30:08 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,9 @@ void	print_fatal_error(t_error *str)
 
 int		ft_parse_arguments(int ac, char **av, t_maze *maze)
 {
-	int fd;
-
-	fd = 0;
-	if (ac < 2 )
-		maze->error = new_error("no arguments", 3);
-	else if (ac > 2)
-		maze->error = new_error("too much arguments", 3);
-	else
-	{
-		fd = open(av[1], O_RDONLY);
-		if (fd < 1)
-		{
-			maze->error = set_error(maze->error, "error", 3);
-			print_fatal_error(maze->error);
-		}
-	}
-	return (fd);
+	(void)av;
+	(void)maze;
+	if (ac != 2)
+		return (0);
+	return (1);
 }

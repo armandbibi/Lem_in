@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:09:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/06 18:03:58 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 19:54:36 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	name = NULL;
 	name = malloc(sizeof(char) * i + 1);
 	if (!name)
-		print_fatal_error(new_error("malloc error", 3));
+		exit(0);
 	i = 0;
 	while (value->str[i] != ' ')
 	{
@@ -38,10 +38,9 @@ void    ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	lst->numero = numero;
 	lst->layer = INT_MAX;
 	lst->belong_to_pass = 0;
-	lst->prev_in_graph = NULL;
 }
 
-void	check_twice_same_name(t_adj_lst *lst, int size_lst)
+int		check_twice_same_name(t_adj_lst *lst, int size_lst)
 {
 	int i;
 	int j;
@@ -50,17 +49,33 @@ void	check_twice_same_name(t_adj_lst *lst, int size_lst)
 	while (i < size_lst - 1)
 	{
 		j = i + 1;
-		while (j <=size_lst - 1)
+		while (j <= size_lst - 1)
 		{
 			if (ft_strequ(lst[i].name, lst[j].name))
-				print_fatal_error(new_error("error", 3));
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
-void    ft_set_adj_lst(t_maze *maze, t_instruction *index)
+void	ft_del_adj_tab(t_maze *maze, int nbr_room_created)
+{
+	int i;
+
+	i = 0;
+	while (i < nbr_room_created)
+	{
+		if (maze->tab_adj[i].name)
+			free(maze->tab_adj[i].name);
+		i++;
+	}
+	free(maze->tab_adj);
+	maze->tab_adj = NULL;
+}
+
+int    ft_set_adj_lst(t_maze *maze, t_instruction *index)
 {
 	t_instruction   *reverse;
 	int             i;
@@ -80,5 +95,10 @@ void    ft_set_adj_lst(t_maze *maze, t_instruction *index)
 		}
 		reverse = reverse->prev;
 	}
-	check_twice_same_name(maze->tab_adj, maze->nbr_rooms);
+	if (!check_twice_same_name(maze->tab_adj, maze->nbr_rooms))
+	{
+		ft_del_adj_tab(maze, maze->nbr_rooms);
+		return (0);
+	}
+	return (1);
 }

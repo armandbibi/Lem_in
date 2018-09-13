@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:33:42 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 14:37:15 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 15:43:38 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ t_maze	*ft_read_file(int fd, t_maze *maze)
 	int		read_return;
 	int		nbr_line;
 
+	fd = 0;
 	nbr_line = 0;
-	while ((read_return = get_next_line(fd, &line)) > 0)
+	while ((read_return = get_next_line(STDIN_FILENO, &line)) > 0)
 	{
 		maze_append(maze, line);
 		nbr_line++;

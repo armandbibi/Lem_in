@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:32:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 18:09:58 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 18:31:31 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,21 @@ t_instruction	*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru)
 
 	tmp = instru;
 	if (!tmp)
-		print_fatal_error(new_error("no index in ft_parse_nbr_ants", 2));
+		return (NULL);
 	while (tmp)
 	{
 		if (ft_is_nbr_ants(tmp))
 		{
 			maze->nbr_ants = ft_atoi(tmp->str);
 			if (maze->nbr_ants == 0)
-				print_fatal_error(new_error("no ants", 1));
+				return (NULL);
 			return (tmp->next);
 		}
 		else if (ft_strequ("##start", tmp->str) ||
 				ft_strequ("##end", tmp->str) || *tmp->str == '#')
 			tmp = tmp->next;
 		else
-		{
-			tmp->error = set_error(tmp->error, "no valide count of ants", 2);
-			print_fatal_error(tmp->error);
-			return (tmp);
-		}
+			return (NULL);
 	}
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/12 18:43:41 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/13 17:35:41 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ ITEMS 	= lem_in.c \
 		 ft_free_maze.c \
 		 t_maze_operations.c \
 		 t_adj_lst_operations.c \
-		 t_env_graphic_operations.c \
 		 t_queue_operations.c \
 		 t_stack_operations.c \
 		 t_error_operations.c \
@@ -54,7 +53,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
 	@make -C $(MLXLIB)
-	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -I$(MLXLIB) -L$(MLXLIB) $(FRAME_WORK) -lmlx -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR)  $(FRAME_WORK) -lft
 	@echo "success !!!!!!"
 	
 	

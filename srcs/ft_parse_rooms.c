@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 15:33:43 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 17:51:25 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 		else if (ft_is_command(tmp))
 			;
 		else
-			print_fatal_error(new_error("bad syntax on room", 3));
+			return (NULL);
 		if (tmp && !ft_strcmp(tmp->str, "##start") &&
 				!ft_turn_and_check(maze, &maze->have_start))
-			print_fatal_error(new_error("2 start", 3));
+			return(NULL);
 		else if (tmp && !ft_strcmp(tmp->str, "##end") &&
 				!ft_turn_and_check(maze, &maze->have_end))
-			print_fatal_error(new_error("2 end", 3));
+			return (NULL);
 		tmp = tmp->next;
 	}
 	return (tmp);
