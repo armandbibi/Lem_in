@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/13 17:35:41 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/13 22:15:16 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME	= lem_in
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra $(debug)
 SDIR	= srcs
-INC 	= ./minilibix/ \
-		  ./libft/
+INC 	= ./libft/
 
 IDIR	= includes
 ODIR	= objs
@@ -52,8 +51,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
-	@make -C $(MLXLIB)
-	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR)  $(FRAME_WORK) -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR)  -lft
 	@echo "success !!!!!!"
 	
 	
@@ -64,7 +62,7 @@ $(ODIR):
 	mkdir $(ODIR)
 
 $(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
-	@$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR) -I $(MLXLIB)
+	@$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR)
 	@echo "compiling $<"
 
 clean :

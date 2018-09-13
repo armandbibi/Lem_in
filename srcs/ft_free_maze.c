@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:25:55 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:00:15 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 21:10:56 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	del_all_nodes(t_adj_lst *lst)
 	if (lst && lst->head)
 	{
 		node1 = lst->head;
-		while (node1 && node1 != node2)
+		while (node1)
 		{
 			node2 = node1;
-				node1 = node1->next;
+			node1 = node1->next;
 			free(node2);
 		}
 		if (lst->name)
@@ -61,7 +61,7 @@ void	ft_del_maze(t_maze *maze)
 			tmp_instruction = tmp_instruction->next;
 			if (tmp_instruction2->str)
 				free(tmp_instruction2->str);
-			if (tmp_instruction2->str)
+			if (tmp_instruction2->error)
 				free(tmp_instruction2->error);
 			free(tmp_instruction2);
 		}
@@ -76,8 +76,7 @@ void	ft_del_maze(t_maze *maze)
 			del_all_nodes(&maze->tab_adj[lst_iterateur]);
 			lst_iterateur++;
 		}
-		return ;
-			free(maze->tab_adj);
+		free(maze->tab_adj);
 	}
 	return ;
 }

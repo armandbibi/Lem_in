@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:42:40 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/13 21:07:59 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_adj_lst	*new_tab_adj(int nbr_rooms)
 	while (i < nbr_rooms)
 	{
 		new_tab[i].head = NULL;
+		new_tab[i].name = NULL;
+		new_tab[i].prev_in_graph = NULL;
 		i++;
 	}
 	return (new_tab);
