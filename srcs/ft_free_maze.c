@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:25:55 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 21:10:56 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:48:33 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	del_all_nodes(t_adj_lst *lst)
 			node1 = node1->next;
 			free(node2);
 		}
-		if (lst->name)
-			free(lst->name);
 	}
+	if (lst->name)
+		free(lst->name);
 }
 
 void	ft_del_good_ways(t_stack **good_ways, int nbr_of_valid_way)
@@ -46,32 +46,40 @@ void	ft_del_good_ways(t_stack **good_ways, int nbr_of_valid_way)
 	free(good_ways);
 }
 
-void	ft_del_maze(t_maze *maze)
+void	ft_del_all_instructions(t_instruction *begining)
 {
 	t_instruction	*tmp_instruction;
 	t_instruction	*tmp_instruction2;
+
+	tmp_instruction = begining;
+	while (tmp_instruction)
+	{
+		tmp_instruction2 = tmp_instruction;
+		tmp_instruction = tmp_instruction->next;
+		if (tmp_instruction2->str)
+			free(tmp_instruction2->str);
+		if (tmp_instruction2->error)
+		{
+			if (tmp_instruction2->error->msg)
+				free(tmp_instruction2->error->msg);
+			free(tmp_instruction2->error);
+		}
+		free(tmp_instruction2);
+	}
+}
+
+void	ft_del_maze(t_maze *maze)
+{
 	int				lst_iterateur;
 
 	if (maze->head)
-	{
-		tmp_instruction = maze->head;
-		while (tmp_instruction)
-		{
-			tmp_instruction2 = tmp_instruction;
-			tmp_instruction = tmp_instruction->next;
-			if (tmp_instruction2->str)
-				free(tmp_instruction2->str);
-			if (tmp_instruction2->error)
-				free(tmp_instruction2->error);
-			free(tmp_instruction2);
-		}
-	}
+		ft_del_all_instructions(maze->head);
 	if (maze->good_ways)
 		ft_del_good_ways(maze->good_ways, maze->nbr_of_good_ways);
 	if (maze->tab_adj)
 	{
 		lst_iterateur = 0;
-		while (lst_iterateur < maze->nbr_rooms && maze->nbr_rooms > 0)
+		while (lst_iterateur < maze->nbr_rooms)
 		{
 			del_all_nodes(&maze->tab_adj[lst_iterateur]);
 			lst_iterateur++;

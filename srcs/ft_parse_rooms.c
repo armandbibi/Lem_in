@@ -6,13 +6,12 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 17:51:25 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:21:03 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem_in.h"
-#include <unistd.h>
 
 int				ft_is_room2(char *str)
 {
@@ -73,7 +72,7 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 			return (NULL);
 		if (tmp && !ft_strcmp(tmp->str, "##start") &&
 				!ft_turn_and_check(maze, &maze->have_start))
-			return(NULL);
+			return (NULL);
 		else if (tmp && !ft_strcmp(tmp->str, "##end") &&
 				!ft_turn_and_check(maze, &maze->have_end))
 			return (NULL);

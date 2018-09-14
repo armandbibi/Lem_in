@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/13 22:15:16 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/14 13:25:25 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC 	= ./libft/
 IDIR	= includes
 ODIR	= objs
 LDIR	= libft
-MLXLIB	= ./minilibix/
+
 ITEMS 	= lem_in.c \
 		 ft_parse.c \
 	 	 ft_parse_args.c \
@@ -42,21 +42,17 @@ ITEMS 	= lem_in.c \
 		 t_stack_operations.c \
 		 t_error_operations.c \
 
-FRAME_WORK = -framework OpenGL -framework AppKit
-
 OBJS	= $(addprefix $(ODIR)/, $(ITEMS:.c=.o))
-
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@make -C $(LDIR)
-	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR)  -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $^ -I $(IDIR) -I $(LDIR) -L $(LDIR) -lft
 	@echo "success !!!!!!"
 	
 	
 $(OBJS) : | $(ODIR)
-
 
 $(ODIR):
 	mkdir $(ODIR)

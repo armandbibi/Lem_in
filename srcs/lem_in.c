@@ -6,14 +6,13 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 16:49:07 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:08:41 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 #include <unistd.h>
-#include "graphic.h"
 
 int	main(int ac, char **av)
 {

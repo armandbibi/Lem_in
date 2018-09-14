@@ -6,13 +6,12 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 15:52:45 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:22:32 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
-#include <stdlib.h>
 
 int				ft_is_tube(t_instruction *tmp)
 {
@@ -106,14 +105,14 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 				;
 			else
 			{
-					tmp->error = set_error(tmp->error, "rooms'name aren't good", 2);
-					return (tmp);
+				tmp->error = set_error(tmp->error, "error", 2);
+				return (tmp);
 			}
 			tmp = tmp->next;
 		}
 		else
 		{
-			tmp->error = set_error(tmp->error, "don t know what you mean with this tube", 2);
+			tmp->error = set_error(tmp->error, "error", 2);
 			return (tmp);
 		}
 	}

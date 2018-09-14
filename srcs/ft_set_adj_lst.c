@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:09:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 19:54:36 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:57:39 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 #include "libft.h"
 #include <limits.h>
 
-void    ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
+static int	ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 {
-	int     i;
-	char    *name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (value->str[i] != ' ')
 		i++;
 	name = NULL;
+	if (i < 1)
+		return (0);
 	name = malloc(sizeof(char) * i + 1);
 	if (!name)
-		exit(0);
+		return (0);
 	i = 0;
 	while (value->str[i] != ' ')
 	{
@@ -38,9 +40,10 @@ void    ft_set_do_lst(t_adj_lst *lst, t_instruction *value, int numero)
 	lst->numero = numero;
 	lst->layer = INT_MAX;
 	lst->belong_to_pass = 0;
+	return (1);
 }
 
-int		check_twice_same_name(t_adj_lst *lst, int size_lst)
+static int	check_twice_same_name(t_adj_lst *lst, int size_lst)
 {
 	int i;
 	int j;
@@ -60,7 +63,7 @@ int		check_twice_same_name(t_adj_lst *lst, int size_lst)
 	return (1);
 }
 
-void	ft_del_adj_tab(t_maze *maze, int nbr_room_created)
+static void	ft_del_adj_tab(t_maze *maze, int nbr_room_created)
 {
 	int i;
 
@@ -75,10 +78,10 @@ void	ft_del_adj_tab(t_maze *maze, int nbr_room_created)
 	maze->tab_adj = NULL;
 }
 
-int    ft_set_adj_lst(t_maze *maze, t_instruction *index)
+int			ft_set_adj_lst(t_maze *maze, t_instruction *index)
 {
-	t_instruction   *reverse;
-	int             i;
+	t_instruction	*reverse;
+	int				i;
 
 	reverse = index->prev;
 	i = maze->nbr_rooms - 1;
@@ -86,7 +89,8 @@ int    ft_set_adj_lst(t_maze *maze, t_instruction *index)
 	{
 		if (ft_is_room(reverse))
 		{
-			ft_set_do_lst(&maze->tab_adj[i], reverse, i);
+			if (!ft_set_do_lst(&maze->tab_adj[i], reverse, i))
+				return (0);
 			if (reverse->type == LM_START)
 				maze->start = &maze->tab_adj[i];
 			if (reverse->type == LM_END)

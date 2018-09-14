@@ -11,7 +11,7 @@ WHAT="lost"
 for f in $BAD_MAPS
 do
 	printf "\n>> testing ${f##*/}:\n"
-	WHERE="$(valgrind --track-origins=yes --show-leak-kinds=definite ./lem_in < $f | grep $WHAT)"
+	WHERE="$(valgrind --track-origins=yes --show-leak-kinds=definite ./lem_in  2>&1 < $f | grep $WHAT)"
 	res=$(echo "$WHERE" | grep -E 'directly|definitely' | cut -c 14-)
 	echo "${res}"
 done
@@ -19,7 +19,7 @@ printf "\n>> 2. GOOD MAPS\n"
 for f in $GOOD_MAPS
 do
 	printf "\n>> testing ${f##*/}:\n"
-	WHERE="$(valgrind --tool=memcheck --leak-check=full ./lem-in 2>&1 < $f | grep $WHAT)"
+	WHERE="$(valgrind --show_leak_kinds=definite ./lem-in 2>&1 < $f | grep $WHAT)"
 	res=$(echo "$WHERE" | grep -E 'directly|definitely' | cut -c 14-)
 	echo "${res}"
 done

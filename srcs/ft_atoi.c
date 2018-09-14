@@ -6,12 +6,11 @@
 /*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 13:43:17 by triou             #+#    #+#             */
-/*   Updated: 2018/09/12 16:48:57 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:09:15 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
-#include <stdlib.h>
 #include "libft.h"
 #include <unistd.h>
 

@@ -6,36 +6,29 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:33:42 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 15:43:38 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:16:12 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "get_next_line.h"
 
-t_maze	*ft_read_file(int fd, t_maze *maze)
+t_maze	*ft_read_file(t_maze *maze)
 {
 	char	*line;
 	int		read_return;
 	int		nbr_line;
 
-	fd = 0;
 	nbr_line = 0;
 	while ((read_return = get_next_line(STDIN_FILENO, &line)) > 0)
 	{
 		maze_append(maze, line);
 		nbr_line++;
 	}
-	if (read_return < 0)
-	{
-		maze->error = set_error(maze->error, "invalid read", 3);
-		print_fatal_error(maze->error);
-	}
-	if (nbr_line < 6)
-	{
-		maze->error = set_error(maze->error, "invalid read", 3);
-		print_fatal_error(maze->error);	
-	}
 	free(line);
+	if (read_return < 0)
+		return (NULL);
+	if (nbr_line < 6)
+		return (NULL);
 	return (maze);
 }

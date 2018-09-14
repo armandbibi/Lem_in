@@ -6,26 +6,26 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 18:42:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 19:00:00 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 12:25:41 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void            show_the_passes(t_stack **lst_of_good_pass)
+void	show_the_passes(t_stack **lst_of_good_pass)
 {
-	t_stack     *s;
-	t_adj_lst   *room;
+	t_stack		*s;
+	t_adj_lst	*room;
 
 	s = *lst_of_good_pass;
 	if (!ft_stack_see_top(s))
-		print_fatal_error(new_error ("no pass", 3));
+		print_fatal_error(new_error("no pass", 3));
 	printf("\n");
 	while ((room = ft_stack_pop(s)))
 		printf("%s\n", room->name);
 }
 
-void			show_valid_stack(t_maze *maze)
+void	show_valid_stack(t_maze *maze)
 {
 	int		effective_lines;
 

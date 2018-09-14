@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:44:57 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:15:45 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct				s_stack
 
 t_maze						*ft_parse(t_maze *maze, int ac, char **av);
 int							ft_parse_arguments(int ac, char **av, t_maze *maze);
-t_maze						*ft_read_file(int fd, t_maze *maze);
+t_maze						*ft_read_file(t_maze *maze);
 /*
 ** functions for reading the file and initializing the maze
 */

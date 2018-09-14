@@ -6,14 +6,11 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 19:26:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:48:45 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/14 13:21:46 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "libft.h"
-#include <stdlib.h>
-#include <limits.h>
 
 t_maze	*ft_parse_instructions(t_maze *maze)
 {
