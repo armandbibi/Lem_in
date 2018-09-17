@@ -6,12 +6,11 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:09:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 12:57:39 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:17:49 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <stdlib.h>
 #include "libft.h"
 #include <limits.h>
 

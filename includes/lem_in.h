@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 13:15:45 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:06:29 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int							ft_is_room(t_instruction *tmp);
 int							ft_is_command(t_instruction *instru);
 t_instruction				*ft_add_error(t_instruction *dest, char *error);
 void						print_fatal_error(t_error *str);
-int							ft_atoi(char *str);
+int							ft_atoi(t_maze *maze, const char *str);
 int							ft_check_parameters(t_maze *maze);
 int							ft_set_adj_lst(t_maze *maze, t_instruction *index);
 

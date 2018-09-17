@@ -6,13 +6,11 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/12 18:44:27 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:04:11 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <limits.h>
-#include <stdlib.h>
 
 static int		is_layer_attribuate(t_adj_lst *room, t_adj_node *node)
 {

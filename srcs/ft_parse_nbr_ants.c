@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:32:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:31:31 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 15:14:53 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_instruction	*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru)
 	{
 		if (ft_is_nbr_ants(tmp))
 		{
-			maze->nbr_ants = ft_atoi(tmp->str);
+			maze->nbr_ants = ft_atoi(maze, tmp->str);
 			if (maze->nbr_ants == 0)
 				return (NULL);
 			return (tmp->next);
