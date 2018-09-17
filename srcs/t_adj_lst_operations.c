@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 21:07:59 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:18:33 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,5 @@ void		ft_delete_node(t_adj_lst *lst, t_adj_node *node)
 			return ;
 		}
 		tmp = tmp->next;
-	}
-}
-
-void		show_adj_lst_tab(t_maze *maze, t_adj_lst *tab, int size)
-{
-	int			v;
-	t_adj_node	*tmp;
-
-	v = 0;
-	while (v < size)
-	{
-		tmp = tab[v].head;
-		if (maze->start == &tab[v])
-			printf("START ---> ");
-		if (maze->end == &tab[v])
-			printf("END ---> ");
-		printf("\nname : %s, layer = %d\ndest:\n", tab[v].name, tab[v].layer);
-		while (tmp)
-		{
-			printf("%s ", tmp->dest->name);
-			tmp = tmp->next;
-		}
-		printf("\n");
-		v++;
 	}
 }

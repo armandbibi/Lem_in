@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 20:25:44 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 15:15:06 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:10:17 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit_properly(t_maze *maze, int error)
 {
 	ft_del_maze(maze);
 	if (error)
-		write(1, "error et cette sortie la\n", 30);
+		write(1, "error\n", 6);
 	exit(0);
 }
 

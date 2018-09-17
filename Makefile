@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/14 13:25:25 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/17 18:18:41 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ ITEMS 	= lem_in.c \
 		 display_passes.c \
 		 get_next_line.c \
 		 ft_atoi.c \
+		 ft_itoa.c \
 		 bfs.c \
 		 ft_free_maze.c \
 		 t_maze_operations.c \

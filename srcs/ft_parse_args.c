@@ -6,15 +6,17 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:34:51 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 13:12:35 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:18:04 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include <stdlib.h>
+#include "libft.h"
 
 void	print_fatal_error(t_error *str)
 {
-	printf("%s\n", str->msg);
+	(void)str;
+	ft_putstr("error\n");
 	exit(0);
 }

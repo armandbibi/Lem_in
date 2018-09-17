@@ -6,14 +6,14 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 15:06:29 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 18:21:17 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# include <stdio.h>
-
+# include "stdio.h"
+# include  <inttypes.h>
 # define LM_NBR_ANTS	1
 # define LM_ROOM		2
 # define LM_TUBE		3
@@ -83,22 +83,16 @@ typedef struct				s_stack
 	int						top;
 	unsigned				capacity;
 	t_adj_lst				**array;
+	int						size;
 }							t_stack;
 
-t_maze						*ft_parse(t_maze *maze, int ac, char **av);
-int							ft_parse_arguments(int ac, char **av, t_maze *maze);
-t_maze						*ft_read_file(t_maze *maze);
-/*
-** functions for reading the file and initializing the maze
-*/
-t_maze						*ft_parse_instructions(t_maze *maze);
-t_maze						*new_maze(t_maze *maze);
-void						ft_del_maze(t_maze *maze);
 
 /*
 ** functions mostly usefull for parsing the instructions
 */
-t_maze						*maze_append(t_maze *maze, char *str);
+t_maze						*ft_parse(t_maze *maze, int ac, char **av);
+t_maze						*ft_read_file(t_maze *maze);
+int							ft_parse_arguments(int ac, char **av, t_maze *maze);
 void						ft_show_instructs(t_maze *maze);
 int							ft_turn_and_check(t_maze *maze, int *value);
 t_instruction				*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru);
@@ -112,12 +106,21 @@ void						print_fatal_error(t_error *str);
 int							ft_atoi(t_maze *maze, const char *str);
 int							ft_check_parameters(t_maze *maze);
 int							ft_set_adj_lst(t_maze *maze, t_instruction *index);
+t_maze						*ft_parse_instructions(t_maze *maze);
+
+/*
+** function for maze controle
+*/
+t_maze						*maze_append(t_maze *maze, char *str);
+t_maze						*new_maze(t_maze *maze);
+void						ft_del_maze(t_maze *maze);
 
 /*
 ** functions use during bfs 
 */
 int							ft_bfs(t_maze *maze);
-void						show_the_passes(t_stack **lst_of_good_pass);
+void						show_the_passes(t_maze *maze);
+char						*ft_itoa(intmax_t num, char *str, int base);
 
 /*
 ** functions for adjacent_list

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:48:32 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 22:00:40 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 19:25:06 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_check_parameters(t_maze *maze)
 		return (0);
 	while (instru)
 	{
-		if (instru->error)
+		if (!ft_is_tube(instru) && instru->error)
 			return (0);
 		instru = instru->next;
 	}

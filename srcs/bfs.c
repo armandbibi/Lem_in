@@ -6,11 +6,12 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 15:04:11 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:13:49 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "libft.h"
 
 static int		is_layer_attribuate(t_adj_lst *room, t_adj_node *node)
 {
@@ -24,19 +25,19 @@ int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 	t_adj_lst	*current_room;
 	int			size;
 
-	printf("\n\n");
+	ft_putstr("\n\n");
 	current_room = room_before_end;
 	size = 0;
-	printf("%s -->", maze->end->name);
+	ft_putstr(maze->end->name);
 	while (current_room->prev_in_graph)
 	{
-		printf("%s -->", current_room->name);
+		ft_putstr(current_room->name);
 		current_room->belong_to_pass = 1;
 		current_room = current_room->prev_in_graph;
 		size++;
 	}
-	printf("%s", maze->start->name);
-	printf("\n\n");
+	ft_putstr(maze->start->name);
+	ft_putstr("\n\n");
 	return (size);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 16:16:24 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 13:08:41 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:51:55 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	if (is_good)
 	{
 		ft_show_instructs(&maze);
-		show_the_passes(maze.good_ways);
+		show_the_passes(&maze);
 	}
 	else
 		write(1, "no valid pass\n", ft_strlen("no valid pass\n"));
