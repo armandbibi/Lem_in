@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 18:21:17 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/18 19:51:59 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int							ft_atoi(t_maze *maze, const char *str);
 int							ft_check_parameters(t_maze *maze);
 int							ft_set_adj_lst(t_maze *maze, t_instruction *index);
 t_maze						*ft_parse_instructions(t_maze *maze);
+void						ft_exit_properly(t_maze *maze, int error);
 
 /*
 ** function for maze controle
@@ -149,6 +150,13 @@ void						ft_stack_push(t_stack *stack, t_adj_lst *item);
 t_adj_lst					*ft_stack_pop(t_stack *stack);
 t_adj_lst					*ft_stack_see_top(t_stack *stack);
 void						ft_del_stack(t_stack *stack);
+
+/*
+** functions utils
+*/
+
+void    					add_ant_to_table(int *tab, int size, int n);
+int     					int_tab_is_empty(int *tab, int size);
 
 /*
 ** functions fo controlling errors

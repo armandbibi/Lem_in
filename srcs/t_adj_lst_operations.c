@@ -6,12 +6,12 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 16:18:33 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/18 19:07:31 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 t_adj_node	*new_adj_node(t_adj_lst *dest)
 {

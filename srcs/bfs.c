@@ -6,21 +6,22 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 16:13:49 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/18 19:58:22 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "libft.h"
 
-static int		is_layer_attribuate(t_adj_lst *room, t_adj_node *node)
+static int		is_layer_attribuate(
+				t_maze *maze, t_adj_lst *room, t_adj_node *node)
 {
 	if (!room || !node)
-		print_fatal_error(new_error("memory according problem I guess", 3));
+		ft_exit_properly(maze, 1);
 	return ((node->dest->layer <= room->layer) || node->dest->belong_to_pass);
 }
 
-int		ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
+int				ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
 {
 	t_adj_lst	*current_room;
 	int			size;
@@ -63,15 +64,15 @@ static int		ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
 	return (size);
 }
 
-static void		iter_through_destination
-	(t_adj_lst *current_room, t_queue *queue)
+static void		iter_through_destination(
+				t_maze *maze, t_adj_lst *current_room, t_queue *queue)
 {
 	t_adj_node	*current_node;
 
 	current_node = current_room->head;
 	while (current_node != NULL)
 	{
-		if (!is_layer_attribuate(current_room, current_node))
+		if (!is_layer_attribuate(maze, current_room, current_node))
 		{
 			current_node->dest->layer = current_room->layer + 1;
 			current_node->dest->prev_in_graph = current_room;
@@ -104,7 +105,7 @@ int				ft_bfs(t_maze *maze)
 			return (1);
 		}
 		else
-			iter_through_destination(current_room, queue);
+			iter_through_destination(maze, current_room, queue);
 	}
 	ft_del_queue(queue);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 20:25:44 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 16:10:17 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/18 19:10:48 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_maze	*ft_parse(t_maze *maze, int ac, char **av)
 {
 	(void)ac;
 	(void)av;
+	if (ac != 1)
+		ft_exit_properly(maze, 1);
 	if (maze->error != NULL)
 		ft_exit_properly(maze, 1);
 	if (ft_read_file(maze) == 0)

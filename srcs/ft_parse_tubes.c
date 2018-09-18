@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 13:22:32 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/18 20:02:32 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				ft_is_tube(t_instruction *tmp)
 	return (1);
 }
 
-void			set_srcs_and_dest(char *tube, char **s, char **d)
+static void		set_srcs_and_dest(t_maze *maze, char *tube, char **s, char **d)
 {
 	int		i;
 	int		j;
@@ -48,7 +48,7 @@ void			set_srcs_and_dest(char *tube, char **s, char **d)
 	srcs = (char *)malloc(sizeof(char) * i + 1);
 	dest = (char *)malloc(sizeof(char) * j + 1);
 	if (!srcs || !dest)
-		print_fatal_error(new_error("malloc error", 3));
+		ft_exit_properly(maze, 1);
 	i = -1;
 	j = 0;
 	while (tube[++i] != '-')
@@ -61,7 +61,7 @@ void			set_srcs_and_dest(char *tube, char **s, char **d)
 	*d = dest;
 }
 
-int				ft_implement_tube(t_maze *maze, char *tube)
+static int		ft_implement_tube(t_maze *maze, char *tube)
 {
 	char		*srcs;
 	char		*dest;
@@ -72,7 +72,7 @@ int				ft_implement_tube(t_maze *maze, char *tube)
 	s = NULL;
 	d = NULL;
 	enumi = -1;
-	set_srcs_and_dest(tube, &srcs, &dest);
+	set_srcs_and_dest(maze, tube, &srcs, &dest);
 	while (++enumi < maze->nbr_rooms)
 	{
 		if (ft_strequ(maze->tab_adj[enumi].name, srcs))
