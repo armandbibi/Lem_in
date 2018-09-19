@@ -6,11 +6,11 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/19 17:40:46 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/19 19:00:47 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= lem_in
+NAME	= lem-in
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra $(debug)
 SDIR	= srcs

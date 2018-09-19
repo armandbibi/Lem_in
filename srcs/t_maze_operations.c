@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 21:58:53 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/19 17:32:11 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 18:21:36 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_maze	*new_maze(t_maze *maze)
 	maze->tab_adj = NULL;
 	maze->count_comments = 0;
 	maze->count_tubes = 0;
-	if (!(maze->good_ways = malloc(sizeof(t_stack *) * 10)))
+	if (!(maze->good_ways = malloc(sizeof(t_stack *) * 12)))
 		exit(0);
 	maze->nbr_of_good_ways = 0;
 	return (maze);

@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 18:42:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/19 17:49:12 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 19:28:46 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		**stack_to_tab_tab(t_maze *maze, t_stack *stack, int **tab_of_ants)
 	i = 0;
 	lst_of_rooms = malloc(sizeof(char *) * (stack->size));
 	tabi = malloc(sizeof(int) * (stack->size));
-	if (!lst_of_rooms || !tab_of_ants)
+	if (!lst_of_rooms || !tab_of_ants || !tabi)
 		ft_exit_properly(maze, 1);
 	ft_stack_pop(stack);
 	while ((room = ft_stack_pop(stack)) && room->name)

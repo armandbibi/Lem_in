@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:16 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/18 19:07:31 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 18:19:19 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_adj_lst	*new_tab_adj(int nbr_rooms)
 
 	new_tab = malloc(sizeof(t_adj_lst) * nbr_rooms);
 	if (!new_tab)
-		exit(0);
+		return (NULL);
 	i = 0;
 	while (i < nbr_rooms)
 	{
