@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 22:00:23 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/18 19:58:22 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 15:44:10 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "libft.h"
 
 static int		is_layer_attribuate(
-				t_maze *maze, t_adj_lst *room, t_adj_node *node)
+				t_maze *maze, t_adj_lst *room, t_adj_node *node, int shorter)
 {
 	if (!room || !node)
 		ft_exit_properly(maze, 1);
-	return ((node->dest->layer <= room->layer) || node->dest->belong_to_pass);
+	return ((node->dest->layer - shorter < room->layer)
+			|| node->dest->belong_to_pass);
 }
 
 int				ft_show_valid_stack(t_maze *maze, t_adj_lst *room_before_end)
@@ -64,15 +65,15 @@ static int		ft_add_good_way(t_maze *maze, t_adj_lst *room_before_end)
 	return (size);
 }
 
-static void		iter_through_destination(
-				t_maze *maze, t_adj_lst *current_room, t_queue *queue)
+static void		iter_through_destination(t_maze *maze, t_adj_lst *current_room,
+				t_queue *queue, int shorter)
 {
 	t_adj_node	*current_node;
 
 	current_node = current_room->head;
 	while (current_node != NULL)
 	{
-		if (!is_layer_attribuate(maze, current_room, current_node))
+		if (!is_layer_attribuate(maze, current_room, current_node, shorter))
 		{
 			current_node->dest->layer = current_room->layer + 1;
 			current_node->dest->prev_in_graph = current_room;
@@ -82,7 +83,7 @@ static void		iter_through_destination(
 	}
 }
 
-int				ft_bfs(t_maze *maze)
+int				ft_bfs(t_maze *maze, int shorter)
 {
 	t_queue		*queue;
 	t_adj_lst	*current_room;
@@ -95,17 +96,13 @@ int				ft_bfs(t_maze *maze)
 		current_room = ft_dequeue(queue);
 		if (current_room == maze->end)
 		{
-			if (ft_add_good_way(maze, current_room->prev_in_graph))
-			{
-				while (ft_dequeue(queue))
-					;
-				ft_bfs(maze);
-			}
+			if (ft_add_good_way(maze, current_room->prev_in_graph) && !shorter)
+				ft_bfs(maze, shorter);
 			ft_del_queue(queue);
 			return (1);
 		}
 		else
-			iter_through_destination(maze, current_room, queue);
+			iter_through_destination(maze, current_room, queue, shorter);
 	}
 	ft_del_queue(queue);
 	return (0);

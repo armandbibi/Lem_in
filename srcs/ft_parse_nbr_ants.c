@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:32:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/17 15:14:53 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 16:29:46 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ t_instruction	*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru)
 		}
 		else if (ft_strequ("##start", tmp->str) ||
 				ft_strequ("##end", tmp->str) || *tmp->str == '#')
+		{
+			maze->count_comments++;
 			tmp = tmp->next;
+		}
 		else
 			return (NULL);
 	}

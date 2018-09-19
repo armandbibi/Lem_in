@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 15:19:22 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/18 20:02:32 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:37:50 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ static int		ft_implement_tube(t_maze *maze, char *tube)
 	return (0);
 }
 
+t_instruction	*set_error_tube(t_instruction *tmp)
+{
+	tmp->error = set_error(tmp->error, "error", 2);
+	return (tmp);
+}
+
 t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 {
 	t_instruction	*tmp;
@@ -98,23 +104,21 @@ t_instruction	*ft_parse_tubes(t_maze *maze, t_instruction *index)
 	while (tmp)
 	{
 		if (ft_is_command(tmp))
+		{
+			maze->count_comments++;
 			tmp = tmp->next;
+		}
 		else if (ft_is_tube(tmp))
 		{
+			maze->count_tubes++;
 			if (ft_implement_tube(maze, tmp->str))
 				;
 			else
-			{
-				tmp->error = set_error(tmp->error, "error", 2);
-				return (tmp);
-			}
+				return (set_error_tube(tmp));
 			tmp = tmp->next;
 		}
 		else
-		{
-			tmp->error = set_error(tmp->error, "error", 2);
-			return (tmp);
-		}
+			return (set_error_tube(tmp));
 	}
 	return (tmp);
 }

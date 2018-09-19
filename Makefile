@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/17 18:18:41 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/19 17:40:46 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ ITEMS 	= lem_in.c \
 		 ft_check_parameters.c \
 	 	 ft_is_command.c \
 		 display_passes.c \
+		 display_passes2.c \
 		 get_next_line.c \
 		 ft_atoi.c \
 		 ft_itoa.c \
@@ -59,7 +60,7 @@ $(ODIR):
 	mkdir $(ODIR)
 
 $(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
-	@$(CC) $(CFLAGS) -o $@ -c $< -I $(IDIR) -I $(LDIR)
+	@$(CC) -o $@ -c $< -I $(IDIR) -I $(LDIR)
 	@echo "compiling $<"
 
 clean :

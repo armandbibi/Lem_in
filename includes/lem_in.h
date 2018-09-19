@@ -6,14 +6,14 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 17:34:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/18 19:51:59 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:42:37 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# include "stdio.h"
-# include  <inttypes.h>
+# include <stdio.h>
+# include <inttypes.h>
 # define LM_NBR_ANTS	1
 # define LM_ROOM		2
 # define LM_TUBE		3
@@ -65,8 +65,11 @@ typedef struct				s_maze
 	t_adj_lst				*start;
 	t_adj_lst				*end;
 	struct s_stack			**good_ways;
+	struct s_stack			*best_way;
 	int						nbr_of_good_ways;
 	struct s_error			*error;
+	int						count_comments;
+	int						count_tubes;
 }							t_maze;
 
 typedef struct				s_queue
@@ -87,13 +90,15 @@ typedef struct				s_stack
 }							t_stack;
 
 
+void						ft_show_details( t_maze *maze);
+void						ft_parse_args(int ac, char **av, int *multi, int *verbose);
 /*
 ** functions mostly usefull for parsing the instructions
 */
 t_maze						*ft_parse(t_maze *maze, int ac, char **av);
 t_maze						*ft_read_file(t_maze *maze);
 int							ft_parse_arguments(int ac, char **av, t_maze *maze);
-void						ft_show_instructs(t_maze *maze);
+void						ft_show_instructs(t_maze *maze, int verbose);
 int							ft_turn_and_check(t_maze *maze, int *value);
 t_instruction				*ft_parse_nbr_ants(t_maze *maze, t_instruction *instru);
 t_instruction				*ft_parse_rooms(t_maze *maze, t_instruction *instru);
@@ -119,9 +124,13 @@ void						ft_del_maze(t_maze *maze);
 /*
 ** functions use during bfs 
 */
-int							ft_bfs(t_maze *maze);
+int							ft_bfs(t_maze *maze, int shorter);
 void						show_the_passes(t_maze *maze);
 char						*ft_itoa(intmax_t num, char *str, int base);
+void						show_room(int i, char *str);
+void						ft_modulo_i(int *i, int modulo);
+void						init_passes(t_maze *maze, int *size, char ***rooms, int **ants);
+char						**stack_to_tab_tab(t_maze *maze, t_stack *stack, int **tab_of_ants);
 
 /*
 ** functions for adjacent_list
@@ -156,7 +165,7 @@ void						ft_del_stack(t_stack *stack);
 */
 
 void    					add_ant_to_table(int *tab, int size, int n);
-int     					int_tab_is_empty(int *tab, int size);
+int     					int_tab_is_empty(int **tab, int *size, int limit);
 
 /*
 ** functions fo controlling errors

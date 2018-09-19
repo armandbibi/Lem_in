@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:18:33 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/14 13:21:03 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 18:11:28 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 {
 	maze->nbr_rooms = 0;
 	if (!tmp)
-		exit(0);
+		ft_exit_properly(maze, 1);
 	while (tmp)
 	{
 		if (ft_is_room(tmp))
@@ -67,7 +67,7 @@ t_instruction	*ft_parse_rooms(t_maze *maze, t_instruction *tmp)
 		else if (ft_is_tube(tmp))
 			return (tmp);
 		else if (ft_is_command(tmp))
-			;
+			maze->count_comments++;
 		else
 			return (NULL);
 		if (tmp && !ft_strcmp(tmp->str, "##start") &&

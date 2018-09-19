@@ -6,7 +6,7 @@
 /*   By: triou <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 13:43:17 by triou             #+#    #+#             */
-/*   Updated: 2018/09/17 15:06:44 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 18:10:56 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ int			ft_atoi(t_maze *maze, const char *nptr)
 		digit += *nptr++ - '0';
 	}
 	if ((sign < 0 && -digit < INT_MIN) || (sign > 0 && digit > INT_MAX))
-	{
-		write(1, "error\n", ft_strlen("error\n"));
-		ft_del_maze(maze);
-		exit(0);
-	}
+		ft_exit_properly(maze, 1);
 	return (sign * digit);
 }

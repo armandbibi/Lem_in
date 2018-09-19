@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 18:42:18 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/18 20:24:55 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/19 17:49:12 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-char	**stack_to_tab_tab(t_maze *maze, t_stack *stack, int **tab_of_ants)
+char		**stack_to_tab_tab(t_maze *maze, t_stack *stack, int **tab_of_ants)
 {
 	char		**lst_of_rooms;
 	t_adj_lst	*room;
@@ -32,14 +32,17 @@ char	**stack_to_tab_tab(t_maze *maze, t_stack *stack, int **tab_of_ants)
 	{
 		tabi[i] = 0;
 		lst_of_rooms[i++] = room->name;
+		show_room(maze->length, room->name);
 	}
+	if (maze->length)
+		ft_putstr("\n");
 	lst_of_rooms[i] = NULL;
 	tabi[i] = 0;
 	*tab_of_ants = tabi;
 	return (lst_of_rooms);
 }
 
-void	concat_room(char *str, int ant, char *room)
+static void	concat_room(char *str, int ant, char *room)
 {
 	int		i;
 	char	tmp[20];
@@ -54,11 +57,16 @@ void	concat_room(char *str, int ant, char *room)
 	ft_strcat(str, " ");
 }
 
-void	ft_print_current_state(char **tab_rooms, int *tab_ants, int size)
+static int	ft_print_current_state(char **tab_rooms, int *tab_ants, int size)
 {
 	int		i;
 	char	str[800];
 
+	if (*str == '\n')
+	{
+		*str = '0';
+		return (0);
+	}
 	i = 0;
 	while (i < 800)
 		str[i++] = 0;
@@ -70,9 +78,23 @@ void	ft_print_current_state(char **tab_rooms, int *tab_ants, int size)
 		i--;
 	}
 	ft_putstr(str);
+	return (ft_strlen(str));
 }
 
-void	show_the_passes(t_maze *maze)
+static void	ft_free_tables(char ***tab_rooms, int **tab_ants, int limit)
+{
+	int i;
+
+	i = 0;
+	while (i < limit)
+	{
+		free(tab_rooms[i]);
+		free(tab_ants[i]);
+		i++;
+	}
+}
+
+void		show_the_passes(t_maze *maze)
 {
 	int		size[10];
 	int		count_ants;
@@ -80,32 +102,23 @@ void	show_the_passes(t_maze *maze)
 	int		*tab_ants[10];
 	int		i;
 
-	write(1, "\n", 1);
-	i = 0;
 	count_ants = 0;
-	while (i < maze->nbr_of_good_ways)
-	{
-		size[i] = maze->good_ways[i]->size;
-		tab_rooms[i] = stack_to_tab_tab(maze, maze->good_ways[i], &tab_ants[i]);
-		i++;
-	}
+	init_passes(maze, size, tab_rooms, tab_ants);
+	if (maze->length)
+		ft_putstr("\n\33[0;32m--details--\33[0;0m\n\n");
 	i = 0;
 	while (++count_ants <= (int)maze->nbr_ants)
 	{
 		add_ant_to_table(tab_ants[i], size[i], count_ants);
 		ft_print_current_state(tab_rooms[i], tab_ants[i], size[i]);
-		i = (i + 1) % maze->nbr_of_good_ways;
-		if (i == 0)
-			write(1, "\n", 1);
+		ft_modulo_i(&i, maze->nbr_of_good_ways);
 	}
-	while (!int_tab_is_empty(tab_ants[i], size[i]))
+	while (!int_tab_is_empty(tab_ants, size, maze->nbr_of_good_ways))
 	{
 		add_ant_to_table(tab_ants[i], size[i], 0);
 		ft_print_current_state(tab_rooms[i], tab_ants[i], size[i]);
-		i = (i + 1) % maze->nbr_of_good_ways;
-		if (i == 0)
-			write(1, "\n", 1);
+		if (!int_tab_is_empty(tab_ants, size, maze->nbr_of_good_ways))
+			ft_modulo_i(&i, maze->nbr_of_good_ways);
 	}
-	free(tab_rooms[0]);
-	free(tab_ants[0]);
+	ft_free_tables(tab_rooms, tab_ants, maze->nbr_of_good_ways);
 }
