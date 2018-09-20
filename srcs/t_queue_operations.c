@@ -6,7 +6,7 @@
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 00:06:20 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/13 18:33:59 by abiestro         ###   ########.fr       */
+/*   Updated: 2018/09/20 13:31:03 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				ft_queue_is_full(t_queue *queue)
 	return (queue->size == (int)queue->capacity);
 }
 
-int		ft_queue_is_empty(t_queue *queue)
+int				ft_queue_is_empty(t_queue *queue)
 {
 	return (queue->size == 0);
 }
@@ -60,17 +60,4 @@ t_adj_lst		*ft_dequeue(t_queue *queue)
 	queue->front = (queue->front + 1) % queue->capacity;
 	queue->size = queue->size - 1;
 	return (item);
-}
-
-t_adj_lst		*ft_queue_front(t_queue *queue)
-{
-	if (queue->size == 0)
-		return (NULL);
-	return (queue->array[queue->front]);
-}
-
-void			ft_del_queue(t_queue *queue)
-{
-	free(queue->array);
-	free(queue);
 }

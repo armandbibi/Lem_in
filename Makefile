@@ -6,7 +6,7 @@
 #    By: abiestro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/18 08:57:44 by triou             #+#    #+#              #
-#    Updated: 2018/09/19 19:00:47 by abiestro         ###   ########.fr        #
+#    Updated: 2018/09/20 13:21:49 by abiestro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ ITEMS 	= lem_in.c \
 		 t_maze_operations.c \
 		 t_adj_lst_operations.c \
 		 t_queue_operations.c \
+		 t_queue_operations2.c \
 		 t_stack_operations.c \
 		 t_error_operations.c \
 

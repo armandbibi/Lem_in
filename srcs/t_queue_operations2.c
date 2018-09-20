@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   t_queue_operations2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiestro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/11 11:01:35 by abiestro          #+#    #+#             */
-/*   Updated: 2018/09/20 13:30:13 by abiestro         ###   ########.fr       */
+/*   Created: 2018/09/20 13:15:25 by abiestro          #+#    #+#             */
+/*   Updated: 2018/09/20 13:29:03 by abiestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 666
-# include "libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
+#include "lem_in.h"
+#include <stdlib.h>
 
-typedef struct		s_line
+t_adj_lst	*ft_queue_front(t_queue *queue)
 {
-	int				fd;
-	char			*data;
-	struct s_line	*next;
-}					t_line;
+	if (queue->size == 0)
+		return (NULL);
+	return (queue->array[queue->front]);
+}
 
-int					get_next_line(const int fd, char **line);
-
-#endif
+void		ft_del_queue(t_queue *queue)
+{
+	free(queue->array);
+	free(queue);
+}
